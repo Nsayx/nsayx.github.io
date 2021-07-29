@@ -44,7 +44,7 @@
 <td>10min</td>
 </tr>
 </tbody></table>
-<p>进入github pages，在Custom domain填入域名，点击save</p>
+<p>在根目录下新建一个CNMAE文件，填入域名</p>
 <h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
 ]]></content>
       <categories>
@@ -52,6 +52,52 @@
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github pages+Hexo+Next搭建个人博客（二）</title>
+    <url>/2021/07/18/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<p>接下来hexo的相关配置工作。</p>
+<span id="more"></span>
+
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p><a href="https://git-scm.com/download/">Git: 2.31.1.windows.1</a></p>
+<p><a href="https://nodejs.org/en/download/">node.js: 14.17.3</a></p>
+<h1 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h1><p>新建一个文件夹blog</p>
+<p>在文件夹内右键打开gitbash，输入如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">hexo init </span><br><span class="line"></span><br><span class="line">npm install // 安装博客程序依赖</span><br><span class="line"></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器输入localhost:4000，即可访问博客页面</p>
+<h1 id="设置基本信息"><a href="#设置基本信息" class="headerlink" title="设置基本信息"></a>设置基本信息</h1><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="comment"># 博客名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment"># 个性签名</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="comment"># 博主</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="生成Sitemap"><a href="#生成Sitemap" class="headerlink" title="生成Sitemap"></a>生成Sitemap</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>安装普通sitemap和百度sitemap两种：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改站点配置文件，加入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">plugins: </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"></span><br><span class="line">baidusitemap:</span><br><span class="line">    path: baidusitemap.xml</span><br><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br></pre></td></tr></table></figure>
+
+<p>确认站点配置中url和root的正确性，站点地图会根据url生成完整的链接</p>
+<h1 id="部署到Github-pages"><a href="#部署到Github-pages" class="headerlink" title="部署到Github pages"></a>部署到Github pages</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>打开站点配置文件_config.yml，进行如下设置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:username/username.github.io	//username为github账户名</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载git部署插件"><a href="#下载git部署插件" class="headerlink" title="下载git部署插件"></a>下载git部署插件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean //清理缓存</span><br><span class="line"></span><br><span class="line">hexo g -d	//让Hexo在生成完毕后自动部署网站</span><br></pre></td></tr></table></figure>
+
+<p>浏览器输入<a href="https://username.github.io即可访问博客/">https://username.github.io即可访问博客</a></p>
+<h1 id="自动打开编辑器"><a href="#自动打开编辑器" class="headerlink" title="自动打开编辑器"></a>自动打开编辑器</h1><p>根目录下新建scripts目录，创建auto_open.js文件，添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">var spawn = require(&#x27;child_process&#x27;).exec;</span><br><span class="line">hexo.on(&#x27;new&#x27;, function(data)&#123;</span><br><span class="line">  spawn(&#x27;start  &quot;编辑器绝对路径&quot; &#x27; + data.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/generating.html">生成文件 | Hexo</a></p>
+<p><a href="https://blog.csdn.net/senupp/article/details/103986447">hexo 写文章创建文件自动打开编辑器_高等游民の博客-CSDN博客</a></p>
+<p><a href="https://www.zywvvd.com/2020/03/21/hexo/8_hexo_generate_sitemap/generate-sitemap/">Hexo -8- 生成 sitemap 提交给Google、百度站长 | 又见苍岚 (zywvvd.com)</a></p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -87,6 +133,12 @@
 <h3 id="头像设置"><a href="#头像设置" class="headerlink" title="头像设置"></a>头像设置</h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/avatar.jpg</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be dispalyed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="社交链接"><a href="#社交链接" class="headerlink" title="社交链接"></a>社交链接</h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">social:</span></span><br><span class="line">  <span class="attr">GitHub:</span> <span class="string">https://github.com/username</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-github</span></span><br><span class="line">  <span class="attr">E-Mail:</span> <span class="string">example@test.com</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-envelope</span></span><br><span class="line">  <span class="comment">#Weibo: https://weibo.com/yourname || fab fa-weibo</span></span><br><span class="line">  <span class="comment">#Google: https://plus.google.com/yourname || fab fa-google</span></span><br><span class="line">  <span class="comment">#Twitter: https://twitter.com/yourname || fab fa-twitter</span></span><br><span class="line">  <span class="comment">#FB Page: https://www.facebook.com/yourname || fab fa-facebook</span></span><br><span class="line">  <span class="comment">#StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow</span></span><br><span class="line">  <span class="comment">#YouTube: https://youtube.com/yourname || fab fa-youtube</span></span><br><span class="line">  <span class="comment">#Instagram: https://instagram.com/yourname || fab fa-instagram</span></span><br><span class="line">  <span class="comment">#Skype: skype:yourname?call|chat || fab fa-skype</span></span><br><span class="line"></span><br><span class="line"><span class="attr">social_icons:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">icons_only:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">transition:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="gitalk评论系统"><a href="#gitalk评论系统" class="headerlink" title="gitalk评论系统"></a>gitalk评论系统</h2><h3 id="建库"><a href="#建库" class="headerlink" title="建库"></a>建库</h3><p>新建一个public仓库，用来保存评论。</p>
+<h3 id="注册OAuth-application"><a href="#注册OAuth-application" class="headerlink" title="注册OAuth application"></a>注册OAuth application</h3><p>进行<a href="https://github.com/settings/applications/new">授权认证</a>，填写相关信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Application name： # 应用名称</span><br><span class="line">Homepage URL： # 你的网站地址</span><br><span class="line">Application description # 描述</span><br><span class="line">Authorization callback URL：# 你的网站地址，如果绑定域名填域名地址</span><br></pre></td></tr></table></figure>
+
+<h3 id="主题配置-1"><a href="#主题配置-1" class="headerlink" title="主题配置"></a>主题配置</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  github_id:   # GitHub repo owner</span><br><span class="line">  repo:     # Repository name to store issues</span><br><span class="line">  client_id:    # GitHub Application Client ID</span><br><span class="line">  client_secret:   # GitHub Application Client Secret</span><br><span class="line">  admin_user:  # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">  distraction_free_mode: false # Facebook-like distraction free mode</span><br><span class="line">  # When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy adress</span><br><span class="line">  # Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line">  # If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line">  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">  language: zh-CN</span><br></pre></td></tr></table></figure>
 
 
 
@@ -134,8 +186,9 @@
 <h2 id="公益404"><a href="#公益404" class="headerlink" title="公益404"></a>公益404</h2><p>在主题目录next/source/下，新建404.html，写入以下内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;404&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;alternate&quot; href=&quot;/atom.xml&quot; title=&quot;YinXin&#x27;s Blog&quot; type=&quot;application/atom+xml&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;/&quot; homePageName=&quot;返回&quot;&gt;&lt;/script&gt; </span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><ul>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li><a href="https://vkali.com/archives/ea0a751e.html"> YinXin’s Blog </a></li>
+<li><a href="https://chenfeng2000.github.io/2020/01/30/NexT-7-7-0%E4%BB%A5%E5%90%8E%E7%89%88%E6%9C%AC-gitalk%E9%85%8D%E7%BD%AE/">hexo博客 NexT 7.7.0以后版本 gitalk配置 | Chen Feng (chenfeng2000.github.io)</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -145,52 +198,6 @@
         <tag>Git</tag>
         <tag>Hexo</tag>
         <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Github pages+Hexo+Next搭建个人博客（二）</title>
-    <url>/2021/07/18/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<p>接下来hexo的相关配置工作。</p>
-<span id="more"></span>
-
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p><a href="https://git-scm.com/download/">Git: 2.31.1.windows.1</a></p>
-<p><a href="https://nodejs.org/en/download/">node.js: 14.17.3</a></p>
-<h1 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h1><p>新建一个文件夹blog</p>
-<p>在文件夹内右键打开gitbash，输入如下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">hexo init </span><br><span class="line"></span><br><span class="line">npm install // 安装博客程序依赖</span><br><span class="line"></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>在浏览器输入localhost:4000，即可访问博客页面</p>
-<h1 id="设置基本信息"><a href="#设置基本信息" class="headerlink" title="设置基本信息"></a>设置基本信息</h1><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="comment"># 博客名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment"># 个性签名</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="comment"># 博主</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="生成Sitemap"><a href="#生成Sitemap" class="headerlink" title="生成Sitemap"></a>生成Sitemap</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>安装普通sitemap和百度sitemap两种：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改站点配置文件，加入：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">plugins: </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"></span><br><span class="line">baidusitemap:</span><br><span class="line">    path: baidusitemap.xml</span><br><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br></pre></td></tr></table></figure>
-
-<p>确认站点配置中url和root的正确性，站点地图会根据url生成完整的链接</p>
-<h1 id="部署到Github-pages"><a href="#部署到Github-pages" class="headerlink" title="部署到Github pages"></a>部署到Github pages</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>打开站点配置文件_config.yml，进行如下设置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:username/username.github.io	//username为github账户名</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<h2 id="下载git部署插件"><a href="#下载git部署插件" class="headerlink" title="下载git部署插件"></a>下载git部署插件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean //清理缓存</span><br><span class="line"></span><br><span class="line">hexo g -d	//让Hexo在生成完毕后自动部署网站</span><br></pre></td></tr></table></figure>
-
-<p>浏览器输入<a href="https://username.github.io即可访问博客/">https://username.github.io即可访问博客</a></p>
-<h1 id="自动打开编辑器"><a href="#自动打开编辑器" class="headerlink" title="自动打开编辑器"></a>自动打开编辑器</h1><p>根目录下新建scripts目录，创建auto_open.js文件，添加如下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">var spawn = require(&#x27;child_process&#x27;).exec;</span><br><span class="line">hexo.on(&#x27;new&#x27;, function(data)&#123;</span><br><span class="line">  spawn(&#x27;start  &quot;编辑器绝对路径&quot; &#x27; + data.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
-<p><a href="https://hexo.io/zh-cn/docs/generating.html">生成文件 | Hexo</a></p>
-<p><a href="https://blog.csdn.net/senupp/article/details/103986447">hexo 写文章创建文件自动打开编辑器_高等游民の博客-CSDN博客</a></p>
-<p><a href="https://www.zywvvd.com/2020/03/21/hexo/8_hexo_generate_sitemap/generate-sitemap/">Hexo -8- 生成 sitemap 提交给Google、百度站长 | 又见苍岚 (zywvvd.com)</a></p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
