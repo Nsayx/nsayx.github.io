@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Github pages+Hexo+Next搭建个人博客（一）</title>
+    <url>/2021/07/15/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>在Github pages上搭建个人博客，首先介绍Github pages的配置</p>
+<span id="more"></span>
+
+<h1 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h1><p>name格式为：username.github.io</p>
+<h1 id="配置ssh密钥"><a href="#配置ssh密钥" class="headerlink" title="配置ssh密钥"></a>配置ssh密钥</h1><p>打开gitbash，输入命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;email@example.com&quot;	//邮箱地址为github注册邮箱</span><br></pre></td></tr></table></figure>
+
+<p>一直回车，直到生成密钥；密钥地址为C:\Users\&lt;用户名&gt;\.ssh\id_rsa.pub</p>
+<p>打开github-Settings-SSH and GPG keys，添加ssh密钥</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>打开gitbash，输入命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>之后会有个询问，输入yes，会显示授权成功</p>
+<h1 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h1><p>如果觉得username.github.io不美观，可以考虑绑定个人域名。这里使用阿里云。</p>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>进入阿里云控制台-点击域名-进入域名控制台-找到个人域名-点击解析</p>
+<p>添加两条记录</p>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>记录类型</th>
+<th>解析线路</th>
+<th>记录值</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@</td>
+<td>CNAME</td>
+<td>默认</td>
+<td>username.github.io</td>
+<td>10min</td>
+</tr>
+<tr>
+<td>www</td>
+<td>CNAME</td>
+<td>默认</td>
+<td>username.github.io</td>
+<td>10min</td>
+</tr>
+</tbody></table>
+<p>进入github pages，在Custom domain填入域名，点击save</p>
+<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github pages+Hexo+Next搭建个人博客（三）</title>
     <url>/2021/07/20/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/</url>
     <content><![CDATA[<p>最后介绍Next主题。</p>
@@ -94,58 +148,32 @@
       </tags>
   </entry>
   <entry>
-    <title>Github pages+Hexo+Next搭建个人博客（一）</title>
-    <url>/2021/07/15/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<p>在Github pages上搭建个人博客，首先介绍Github pages的配置</p>
+    <title>Github pages+Hexo+Next搭建个人博客（四）</title>
+    <url>/2021/07/25/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
+    <content><![CDATA[<p>这里介绍一些文章的发布技巧</p>
 <span id="more"></span>
 
-<h1 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h1><p>name格式为：username.github.io</p>
-<h1 id="配置ssh密钥"><a href="#配置ssh密钥" class="headerlink" title="配置ssh密钥"></a>配置ssh密钥</h1><p>打开gitbash，输入命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;email@example.com&quot;	//邮箱地址为github注册邮箱</span><br></pre></td></tr></table></figure>
+<h1 id="首页显示文章摘要"><a href="#首页显示文章摘要" class="headerlink" title="首页显示文章摘要"></a>首页显示文章摘要</h1><p>在文章中你想要截断的位置输入如下语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
 
-<p>一直回车，直到生成密钥；密钥地址为C:\Users\&lt;用户名&gt;\.ssh\id_rsa.pub</p>
-<p>打开github-Settings-SSH and GPG keys，添加ssh密钥</p>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>打开gitbash，输入命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<h1 id="文章模板"><a href="#文章模板" class="headerlink" title="文章模板"></a>文章模板</h1><p>打开/scaffolds/post.md文件，进行如下修改：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line">urlname:</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
 
-<p>之后会有个询问，输入yes，会显示授权成功</p>
-<h1 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h1><p>如果觉得username.github.io不美观，可以考虑绑定个人域名。这里使用阿里云。</p>
-<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>进入阿里云控制台-点击域名-进入域名控制台-找到个人域名-点击解析</p>
-<p>添加两条记录</p>
-<table>
-<thead>
-<tr>
-<th>主机记录</th>
-<th>记录类型</th>
-<th>解析线路</th>
-<th>记录值</th>
-<th>TTL</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@</td>
-<td>CNAME</td>
-<td>默认</td>
-<td>username.github.io</td>
-<td>10min</td>
-</tr>
-<tr>
-<td>www</td>
-<td>CNAME</td>
-<td>默认</td>
-<td>username.github.io</td>
-<td>10min</td>
-</tr>
-</tbody></table>
-<p>进入github pages，在Custom domain填入域名，点击save</p>
-<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
+<h1 id="开启updated排序"><a href="#开启updated排序" class="headerlink" title="开启updated排序"></a>开启updated排序</h1><p>打开站点配置文件，进行如下修改：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Home page setting</span><br><span class="line"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span><br><span class="line"># per_page: Posts displayed per page. (0 = disable pagination)</span><br><span class="line"># order_by: Posts order. (Order by date descending by default)</span><br><span class="line">index_generator:</span><br><span class="line">  path: &#x27;&#x27;</span><br><span class="line">  per_page: 10</span><br><span class="line">  order_by: -updated</span><br></pre></td></tr></table></figure>
+
+<h1 id="添加标签、分类"><a href="#添加标签、分类" class="headerlink" title="添加标签、分类"></a>添加标签、分类</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- 分类</span><br><span class="line">tags:</span><br><span class="line">- 标签1</span><br><span class="line">- 标签2</span><br></pre></td></tr></table></figure>
+
+<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new &#x27;title&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>Ps：注意把标题里的空格换位<kbd>-</kbd></p>
+<h1 id="新建草稿"><a href="#新建草稿" class="headerlink" title="新建草稿"></a>新建草稿</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new draft &#x27;title&#x27; [--draft] #加上--draft可预览草稿</span><br></pre></td></tr></table></figure>
+
+<h1 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo publish &#x27;title&#x27;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://sqiang.net/post/2792803495.html">解决Hexo文章更新时间问题 | whoru (sqiang.net)</a></p>
+<p><a href="https://blog.vanxnf.top/2018/09/03/Hexo-%E5%8D%9A%E5%AE%A2-Hiker-%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E6%96%87%E7%AB%A0%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B9%B6%E6%8C%89%E7%85%A7%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/">Hexo 博客 Hiker 主题增加文章最后编辑时间，并按照最后编辑时间排序 - Welcome To Vientiane (vanxnf.top)</a></p>
 ]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
   </entry>
   <entry>
     <title>Github pages+Hexo+Next搭建个人博客（二）</title>
@@ -272,34 +300,6 @@
       <tags>
         <tag>ahk</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Github pages+Hexo+Next搭建个人博客（四）</title>
-    <url>/2021/07/25/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
-    <content><![CDATA[<p>这里介绍一些文章的发布技巧</p>
-<span id="more"></span>
-
-<h1 id="首页显示文章摘要"><a href="#首页显示文章摘要" class="headerlink" title="首页显示文章摘要"></a>首页显示文章摘要</h1><p>在文章中你想要截断的位置输入如下语句：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="文章模板"><a href="#文章模板" class="headerlink" title="文章模板"></a>文章模板</h1><p>打开/scaffolds/post.md文件，进行如下修改：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line">urlname:</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
-
-<h1 id="开启updated排序"><a href="#开启updated排序" class="headerlink" title="开启updated排序"></a>开启updated排序</h1><p>打开站点配置文件，进行如下修改：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Home page setting</span><br><span class="line"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span><br><span class="line"># per_page: Posts displayed per page. (0 = disable pagination)</span><br><span class="line"># order_by: Posts order. (Order by date descending by default)</span><br><span class="line">index_generator:</span><br><span class="line">  path: &#x27;&#x27;</span><br><span class="line">  per_page: 10</span><br><span class="line">  order_by: -updated</span><br></pre></td></tr></table></figure>
-
-<h1 id="添加标签、分类"><a href="#添加标签、分类" class="headerlink" title="添加标签、分类"></a>添加标签、分类</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- 分类</span><br><span class="line">tags:</span><br><span class="line">- 标签1</span><br><span class="line">- 标签2</span><br></pre></td></tr></table></figure>
-
-<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new &#x27;title&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>Ps：注意把标题里的空格换位<kbd>-</kbd></p>
-<h1 id="新建草稿"><a href="#新建草稿" class="headerlink" title="新建草稿"></a>新建草稿</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new draft &#x27;title&#x27; [--draft] #加上--draft可预览草稿</span><br></pre></td></tr></table></figure>
-
-<h1 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo publish &#x27;title&#x27;</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://sqiang.net/post/2792803495.html">解决Hexo文章更新时间问题 | whoru (sqiang.net)</a></p>
-<p><a href="https://blog.vanxnf.top/2018/09/03/Hexo-%E5%8D%9A%E5%AE%A2-Hiker-%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E6%96%87%E7%AB%A0%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B9%B6%E6%8C%89%E7%85%A7%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/">Hexo 博客 Hiker 主题增加文章最后编辑时间，并按照最后编辑时间排序 - Welcome To Vientiane (vanxnf.top)</a></p>
-]]></content>
   </entry>
   <entry>
     <title>mysql实用语句</title>

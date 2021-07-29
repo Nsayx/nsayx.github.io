@@ -88,6 +88,13 @@
 
   
   <url>
+    <loc>http://nsayx.com/tags/git/</loc>
+    <lastmod>2021-07-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://nsayx.com/tags/Git/</loc>
     <lastmod>2021-07-29</lastmod>
     <changefreq>daily</changefreq>
@@ -103,13 +110,6 @@
   
   <url>
     <loc>http://nsayx.com/tags/Next/</loc>
-    <lastmod>2021-07-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://nsayx.com/tags/git/</loc>
     <lastmod>2021-07-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
