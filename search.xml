@@ -162,6 +162,13 @@
 <p>在浏览器输入localhost:4000，即可访问博客页面</p>
 <h1 id="设置基本信息"><a href="#设置基本信息" class="headerlink" title="设置基本信息"></a>设置基本信息</h1><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="comment"># 博客名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment"># 个性签名</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="comment"># 博主</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 
+<h1 id="生成Sitemap"><a href="#生成Sitemap" class="headerlink" title="生成Sitemap"></a>生成Sitemap</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>安装普通sitemap和百度sitemap两种：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改站点配置文件，加入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">plugins: </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"></span><br><span class="line">baidusitemap:</span><br><span class="line">    path: baidusitemap.xml</span><br><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br></pre></td></tr></table></figure>
+
+<p>确认站点配置中url和root的正确性，站点地图会根据url生成完整的链接</p>
 <h1 id="部署到Github-pages"><a href="#部署到Github-pages" class="headerlink" title="部署到Github pages"></a>部署到Github pages</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>打开站点配置文件_config.yml，进行如下设置</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:username/username.github.io	//username为github账户名</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
@@ -176,6 +183,7 @@
 <h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
 <p><a href="https://hexo.io/zh-cn/docs/generating.html">生成文件 | Hexo</a></p>
 <p><a href="https://blog.csdn.net/senupp/article/details/103986447">hexo 写文章创建文件自动打开编辑器_高等游民の博客-CSDN博客</a></p>
+<p><a href="https://www.zywvvd.com/2020/03/21/hexo/8_hexo_generate_sitemap/generate-sitemap/">Hexo -8- 生成 sitemap 提交给Google、百度站长 | 又见苍岚 (zywvvd.com)</a></p>
 ]]></content>
       <categories>
         <category>blog</category>
