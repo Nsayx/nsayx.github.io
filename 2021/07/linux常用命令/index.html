@@ -20,28 +20,28 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nsayx.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="在Github pages上搭建个人博客，首先介绍Github pages的配置">
+<meta name="description" content="工作中经常要用到liunx命令，这里记录常见的一些">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github pages+Hexo+Next搭建个人博客（一）">
-<meta property="og:url" content="https://nsayx.com/2021/07/15/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:title" content="linux常用命令">
+<meta property="og:url" content="https://nsayx.com/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
 <meta property="og:site_name" content="Ns&#39;s Blog">
-<meta property="og:description" content="在Github pages上搭建个人博客，首先介绍Github pages的配置">
+<meta property="og:description" content="工作中经常要用到liunx命令，这里记录常见的一些">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-15T11:47:11.000Z">
-<meta property="article:modified_time" content="2021-07-17T11:47:11.000Z">
+<meta property="article:published_time" content="2021-07-30T00:57:04.000Z">
+<meta property="article:modified_time" content="2021-07-30T00:57:04.000Z">
 <meta property="article:author" content="Ns">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://nsayx.com/2021/07/15/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/">
+<link rel="canonical" href="https://nsayx.com/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://nsayx.com/2021/07/15/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/","path":"2021/07/15/Github pages+Hexo+Next搭建个人博客（一）/","title":"Github pages+Hexo+Next搭建个人博客（一）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://nsayx.com/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/","path":"2021/07/linux常用命令/","title":"linux常用命令"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Github pages+Hexo+Next搭建个人博客（一） | Ns's Blog</title>
+<title>linux常用命令 | Ns's Blog</title>
   
 
 
@@ -149,7 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAGithub%E4%BB%93%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">创建Github仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEssh%E5%AF%86%E9%92%A5"><span class="nav-number">2.</span> <span class="nav-text">配置ssh密钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="nav-number">4.</span> <span class="nav-text">绑定域名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90"><span class="nav-number">4.1.</span> <span class="nav-text">域名解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="nav-number">5.</span> <span class="nav-text">参考博客</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">复制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8"><span class="nav-number">2.</span> <span class="nav-text">移动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">创建目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5-%E9%80%80%E5%87%BA%E7%9B%AE%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">进入&#x2F;退出目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95"><span class="nav-number">5.</span> <span class="nav-text">删除文件&#x2F;目录</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -165,18 +165,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -199,28 +199,28 @@
 	</div>
 	<ul class="links-of-blogroll-list recent-posts-list">
 	        <li class="my-links-of-blogroll-item">
-		    <a href="/2021/07/29/ahk/" title="ahk" target="">
+		    <a href="/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="linux常用命令" target="">
+		    linux常用命令
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2021/07/adb/" title="adb" target="">
+		    adb
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2021/07/ahk/" title="ahk" target="">
 		    ahk
 		    </a>
 		</li>
 	        <li class="my-links-of-blogroll-item">
-		    <a href="/2021/07/29/mysql%E5%AE%9E%E7%94%A8%E8%AF%AD%E5%8F%A5/" title="mysql实用语句" target="">
+		    <a href="/2021/07/mysql%E5%AE%9E%E7%94%A8%E8%AF%AD%E5%8F%A5/" title="mysql实用语句" target="">
 		    mysql实用语句
 		    </a>
 		</li>
 	        <li class="my-links-of-blogroll-item">
-		    <a href="/2021/07/29/mysql%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/" title="mysql常见函数" target="">
+		    <a href="/2021/07/mysql%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/" title="mysql常见函数" target="">
 		    mysql常见函数
-		    </a>
-		</li>
-	        <li class="my-links-of-blogroll-item">
-		    <a href="/2021/07/29/mysql%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" title="mysql常见问题" target="">
-		    mysql常见问题
-		    </a>
-		</li>
-	        <li class="my-links-of-blogroll-item">
-		    <a href="/2021/07/25/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/" title="Github pages+Hexo+Next搭建个人博客（四）" target="">
-		    Github pages+Hexo+Next搭建个人博客（四）
 		    </a>
 		</li>
 	</ul>
@@ -259,7 +259,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://nsayx.com/2021/07/15/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://nsayx.com/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -272,7 +272,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Github pages+Hexo+Next搭建个人博客（一）
+          linux常用命令
         </h1>
 
         <div class="post-meta-container">
@@ -283,22 +283,15 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-07-15 19:47:11" itemprop="dateCreated datePublished" datetime="2021-07-15T19:47:11+08:00">2021-07-15</time>
+      <time title="创建时间：2021-07-30 08:57:04" itemprop="dateCreated datePublished" datetime="2021-07-30T08:57:04+08:00">2021-07-30</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-17 19:47:11" itemprop="dateModified" datetime="2021-07-17T19:47:11+08:00">2021-07-17</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/blog/" itemprop="url" rel="index"><span itemprop="name">blog</span></a>
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
         </span>
     </span>
 
@@ -319,49 +312,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>在Github pages上搭建个人博客，首先介绍Github pages的配置</p>
+        <p>工作中经常要用到liunx命令，这里记录常见的一些</p>
 <span id="more"></span>
 
-<h1 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h1><p>name格式为：username.github.io</p>
-<h1 id="配置ssh密钥"><a href="#配置ssh密钥" class="headerlink" title="配置ssh密钥"></a>配置ssh密钥</h1><p>打开gitbash，输入命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;email@example.com&quot;	//邮箱地址为github注册邮箱</span><br></pre></td></tr></table></figure>
+<h1 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cp</span> <span class="symbol">&lt;file_path&gt;</span> <span class="symbol">&lt;file_path&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>一直回车，直到生成密钥；密钥地址为C:\Users\&lt;用户名&gt;\.ssh\id_rsa.pub</p>
-<p>打开github-Settings-SSH and GPG keys，添加ssh密钥</p>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>打开gitbash，输入命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<h1 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv <span class="tag">&lt;<span class="name">file_path</span>&gt;</span> <span class="tag">&lt;<span class="name">file_path</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>之后会有个询问，输入yes，会显示授权成功</p>
-<h1 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h1><p>如果觉得username.github.io不美观，可以考虑绑定个人域名。这里使用阿里云。</p>
-<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>进入阿里云控制台-点击域名-进入域名控制台-找到个人域名-点击解析</p>
-<p>添加两条记录</p>
-<table>
-<thead>
-<tr>
-<th>主机记录</th>
-<th>记录类型</th>
-<th>解析线路</th>
-<th>记录值</th>
-<th>TTL</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@</td>
-<td>CNAME</td>
-<td>默认</td>
-<td>username.github.io</td>
-<td>10min</td>
-</tr>
-<tr>
-<td>www</td>
-<td>CNAME</td>
-<td>默认</td>
-<td>username.github.io</td>
-<td>10min</td>
-</tr>
-</tbody></table>
-<p>在根目录下新建一个CNMAE文件，填入域名</p>
-<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
+<h1 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> <span class="symbol">&lt;dir_name&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="进入-退出目录"><a href="#进入-退出目录" class="headerlink" title="进入/退出目录"></a>进入/退出目录</h1><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> &lt;dir_path&gt;<span class="string">/..</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="删除文件-目录"><a href="#删除文件-目录" class="headerlink" title="删除文件/目录"></a>删除文件/目录</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm (-rf) &lt;file_path&gt;	<span class="regexp">//</span>-rf是删除目录</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -397,7 +359,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nsayx.com/2021/07/15/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/" title="Github pages+Hexo+Next搭建个人博客（一）">https://nsayx.com/2021/07/15/Github pages+Hexo+Next搭建个人博客（一）/</a>
+      <a href="https://nsayx.com/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="linux常用命令">https://nsayx.com/2021/07/linux常用命令/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -406,18 +368,18 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2021/07/adb/" rel="prev" title="adb">
+                  <i class="fa fa-chevron-left"></i> adb
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/07/18/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="Github pages+Hexo+Next搭建个人博客（二）">
-                  Github pages+Hexo+Next搭建个人博客（二） <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -485,7 +447,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"nsayx","repo":"comments","client_id":"c6fa1ba8ab10e84dd1b6","client_secret":"89e31d4d5313738b4517cdc5081333f345f64490","admin_user":"nsayx","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"02c3e97329e93e9d897f2ffbcae553ad"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"nsayx","repo":"comments","client_id":"c6fa1ba8ab10e84dd1b6","client_secret":"89e31d4d5313738b4517cdc5081333f345f64490","admin_user":"nsayx","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"450707814d4d223a39296dd7c17e917c"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

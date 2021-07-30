@@ -2,18 +2,18 @@
 <search>
   <entry>
     <title>Github pages+Hexo+Next搭建个人博客（一）</title>
-    <url>/2021/07/15/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<p>在Github pages上搭建个人博客，首先介绍Github pages的配置</p>
 <span id="more"></span>
 
 <h1 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h1><p>name格式为：username.github.io</p>
 <h1 id="配置ssh密钥"><a href="#配置ssh密钥" class="headerlink" title="配置ssh密钥"></a>配置ssh密钥</h1><p>打开gitbash，输入命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;email@example.com&quot;	//邮箱地址为github注册邮箱</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;email@example.com&quot;</span>	<span class="regexp">//</span>邮箱地址为github注册邮箱</span><br></pre></td></tr></table></figure>
 
 <p>一直回车，直到生成密钥；密钥地址为C:\Users\&lt;用户名&gt;\.ssh\id_rsa.pub</p>
 <p>打开github-Settings-SSH and GPG keys，添加ssh密钥</p>
 <h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>打开gitbash，输入命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">ssh -T <span class="symbol">git@</span>github.com</span><br></pre></td></tr></table></figure>
 
 <p>之后会有个询问，输入yes，会显示授权成功</p>
 <h1 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h1><p>如果觉得username.github.io不美观，可以考虑绑定个人域名。这里使用阿里云。</p>
@@ -56,7 +56,7 @@
   </entry>
   <entry>
     <title>Github pages+Hexo+Next搭建个人博客（三）</title>
-    <url>/2021/07/20/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/</url>
+    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/</url>
     <content><![CDATA[<p>最后介绍Next主题。</p>
 <span id="more"></span>
 
@@ -90,9 +90,9 @@
 
 <h2 id="gitalk评论系统"><a href="#gitalk评论系统" class="headerlink" title="gitalk评论系统"></a>gitalk评论系统</h2><h3 id="建库"><a href="#建库" class="headerlink" title="建库"></a>建库</h3><p>新建一个public仓库，用来保存评论。</p>
 <h3 id="注册OAuth-application"><a href="#注册OAuth-application" class="headerlink" title="注册OAuth application"></a>注册OAuth application</h3><p>进行<a href="https://github.com/settings/applications/new">授权认证</a>，填写相关信息</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Application name： # 应用名称</span><br><span class="line">Homepage URL： # 你的网站地址</span><br><span class="line">Application description # 描述</span><br><span class="line">Authorization callback URL：# 你的网站地址，如果绑定域名填域名地址</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Application name： <span class="comment"># 应用名称</span></span><br><span class="line">Homepage <span class="built_in">URL</span>： <span class="comment"># 你的网站地址</span></span><br><span class="line">Application description <span class="comment"># 描述</span></span><br><span class="line">Authorization callback <span class="built_in">URL</span>：<span class="comment"># 你的网站地址，如果绑定域名填域名地址</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="主题配置-1"><a href="#主题配置-1" class="headerlink" title="主题配置"></a>主题配置</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  github_id:   # GitHub repo owner</span><br><span class="line">  repo:     # Repository name to store issues</span><br><span class="line">  client_id:    # GitHub Application Client ID</span><br><span class="line">  client_secret:   # GitHub Application Client Secret</span><br><span class="line">  admin_user:  # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">  distraction_free_mode: false # Facebook-like distraction free mode</span><br><span class="line">  # When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy adress</span><br><span class="line">  # Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line">  # If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line">  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">  language: zh-CN</span><br></pre></td></tr></table></figure>
+<h3 id="主题配置-1"><a href="#主题配置-1" class="headerlink" title="主题配置"></a>主题配置</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">github_id:</span>   <span class="comment"># GitHub repo owner</span></span><br><span class="line">  <span class="attr">repo:</span>     <span class="comment"># Repository name to store issues</span></span><br><span class="line">  <span class="attr">client_id:</span>    <span class="comment"># GitHub Application Client ID</span></span><br><span class="line">  <span class="attr">client_secret:</span>   <span class="comment"># GitHub Application Client Secret</span></span><br><span class="line">  <span class="attr">admin_user:</span>  <span class="comment"># GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span></span><br><span class="line">  <span class="attr">distraction_free_mode:</span> <span class="literal">false</span> <span class="comment"># Facebook-like distraction free mode</span></span><br><span class="line">  <span class="comment"># When the official proxy is not available, you can change it to your own proxy address</span></span><br><span class="line">  <span class="attr">proxy:</span> <span class="string">https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token</span> <span class="comment"># This is official proxy adress</span></span><br><span class="line">  <span class="comment"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span></span><br><span class="line">  <span class="comment"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span></span><br><span class="line">  <span class="comment"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-CN</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -101,14 +101,14 @@
 
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="添加字数统计与阅读时长"><a href="#添加字数统计与阅读时长" class="headerlink" title="添加字数统计与阅读时长"></a>添加字数统计与阅读时长</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-symbols-count-time --save	</span><br></pre></td></tr></table></figure>
+<h3 id="添加字数统计与阅读时长"><a href="#添加字数统计与阅读时长" class="headerlink" title="添加字数统计与阅读时长"></a>添加字数统计与阅读时长</h3><figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">npm install hexo-symbols-<span class="built_in">count</span>-<span class="built_in">time</span> <span class="comment">--save	</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">symbols_count_time:</span></span><br><span class="line">  <span class="attr">separated_meta:</span> <span class="literal">true</span>  <span class="comment"># 是否换行显示 字数统计 及 阅读时长</span></span><br><span class="line">  <span class="attr">item_text_post:</span> <span class="literal">true</span>  <span class="comment"># 文章 字数统计 阅读时长 使用图标 还是 文本表示</span></span><br><span class="line">  <span class="attr">item_text_total:</span> <span class="literal">true</span> <span class="comment"># 博客底部统计 字数统计 阅读时长 使用图标 还是 文本表示</span></span><br><span class="line">  <span class="attr">awl:</span> <span class="number">4</span></span><br><span class="line">  <span class="attr">wpm:</span> <span class="number">275</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="个性化"><a href="#个性化" class="headerlink" title="个性化"></a>个性化</h2><p>在blog/source/_data目录下添加代码，没有文件或目录则新建</p>
 <p>在主题配置文件中设置参数</p>
 <h3 id="设置背景及博客内容透明化"><a href="#设置背景及博客内容透明化" class="headerlink" title="设置背景及博客内容透明化"></a>设置背景及博客内容透明化</h3><p>打开styles.styl，添加代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 添加背景图片</span><br><span class="line">body &#123;</span><br><span class="line">      background: url(/images/backgroud.jpg);//自己喜欢的图片地址</span><br><span class="line">      background-size: cover;</span><br><span class="line">      background-repeat: no-repeat;</span><br><span class="line">      background-attachment: fixed;</span><br><span class="line">      background-position: 50% 50%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//博客内容透明化</span><br><span class="line">//文章内容的透明度设置</span><br><span class="line">.main-inner &#123;</span><br><span class="line">  opacity: 0.8;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//侧边框的透明度设置</span><br><span class="line">.sidebar &#123;</span><br><span class="line">  opacity: 0.8;</span><br><span class="line">&#125;</span><br><span class="line">//菜单栏的透明度设置</span><br><span class="line">.header-inner &#123;</span><br><span class="line">  background: rgba(255,255,255,0.8);</span><br><span class="line">&#125;</span><br><span class="line">//搜索框（local-search）的透明度设置</span><br><span class="line">.popup &#123;</span><br><span class="line">  opacity: 0.9;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 添加背景图片</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">      <span class="attribute">background</span>: url(/images/backgroud.jpg);<span class="comment">//自己喜欢的图片地址</span></span><br><span class="line">      <span class="attribute">background-size</span>: cover;</span><br><span class="line">      <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">      <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">      <span class="attribute">background-position</span>: <span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//博客内容透明化</span></span><br><span class="line"><span class="comment">//文章内容的透明度设置</span></span><br><span class="line"><span class="selector-class">.main-inner</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//侧边框的透明度设置</span></span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//菜单栏的透明度设置</span></span><br><span class="line"><span class="selector-class">.header-inner</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//搜索框（local-search）的透明度设置</span></span><br><span class="line"><span class="selector-class">.popup</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.9</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">style:</span> <span class="string">source/_data/styles.styl</span>	</span><br></pre></td></tr></table></figure>
 
@@ -128,17 +128,17 @@
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">recent_posts:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">recent_posts_title:</span> <span class="string">近期文章</span></span><br><span class="line"><span class="attr">recent_posts_layout:</span> <span class="string">block</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="生成标签、分类、关于页面"><a href="#生成标签、分类、关于页面" class="headerlink" title="生成标签、分类、关于页面"></a>生成标签、分类、关于页面</h2><p>在命令行博客根目录分别执行下面命令。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br><span class="line"></span><br><span class="line">hexo new page categories</span><br><span class="line"></span><br><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="type">page</span> tags</span><br><span class="line"></span><br><span class="line">hexo <span class="keyword">new</span> <span class="type">page</span> categories</span><br><span class="line"></span><br><span class="line">hexo <span class="keyword">new</span> <span class="type">page</span> about</span><br></pre></td></tr></table></figure>
 
 <p>在blog/source/下分别有tags、categories、about三个文件夹，每个文件夹中都有一个index.md文件，接下来分别修改每个文件。</p>
-<h3 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2020-11-24 11:06:30</span><br><span class="line">type: tags</span><br></pre></td></tr></table></figure>
+<h3 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">title</span>: 标签</span><br><span class="line"><span class="attribute">date</span>: <span class="number">2020</span>-<span class="number">11</span>-<span class="number">24</span> <span class="number">11</span>:<span class="number">06</span>:<span class="number">30</span></span><br><span class="line"><span class="attribute">type</span>: tags</span><br></pre></td></tr></table></figure>
 
-<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a>分类页</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: 分类</span><br><span class="line">date: 2020-11-24 11:06:43</span><br><span class="line">type: categories</span><br></pre></td></tr></table></figure>
+<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a>分类页</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">title</span>: 分类</span><br><span class="line"><span class="attribute">date</span>: <span class="number">2020</span>-<span class="number">11</span>-<span class="number">24</span> <span class="number">11</span>:<span class="number">06</span>:<span class="number">43</span></span><br><span class="line"><span class="attribute">type</span>: categories</span><br></pre></td></tr></table></figure>
 
-<h3 id="关于页"><a href="#关于页" class="headerlink" title="关于页"></a>关于页</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: 关于</span><br><span class="line">date: 2020-11-24 11:06:23</span><br><span class="line">type: about</span><br></pre></td></tr></table></figure>
+<h3 id="关于页"><a href="#关于页" class="headerlink" title="关于页"></a>关于页</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">title</span>: 关于</span><br><span class="line"><span class="attribute">date</span>: <span class="number">2020</span>-<span class="number">11</span>-<span class="number">24</span> <span class="number">11</span>:<span class="number">06</span>:<span class="number">23</span></span><br><span class="line"><span class="attribute">type</span>: about</span><br></pre></td></tr></table></figure>
 
 <h2 id="公益404"><a href="#公益404" class="headerlink" title="公益404"></a>公益404</h2><p>在主题目录next/source/下，新建404.html，写入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;404&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;alternate&quot; href=&quot;/atom.xml&quot; title=&quot;YinXin&#x27;s Blog&quot; type=&quot;application/atom+xml&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;/&quot; homePageName=&quot;返回&quot;&gt;&lt;/script&gt; </span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>404<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;alternate&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/atom.xml&quot;</span> <span class="attr">title</span>=<span class="string">&quot;YinXin&#x27;s Blog&quot;</span> <span class="attr">type</span>=<span class="string">&quot;application/atom+xml&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;/&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li><a href="https://vkali.com/archives/ea0a751e.html"> YinXin’s Blog </a></li>
@@ -156,7 +156,7 @@
   </entry>
   <entry>
     <title>Github pages+Hexo+Next搭建个人博客（二）</title>
-    <url>/2021/07/18/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<p>接下来hexo的相关配置工作。</p>
 <span id="more"></span>
 
@@ -170,22 +170,22 @@
 <h1 id="设置基本信息"><a href="#设置基本信息" class="headerlink" title="设置基本信息"></a>设置基本信息</h1><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="comment"># 博客名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment"># 个性签名</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="comment"># 博主</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="生成Sitemap"><a href="#生成Sitemap" class="headerlink" title="生成Sitemap"></a>生成Sitemap</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>安装普通sitemap和百度sitemap两种：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-generator-sitemap --save</span><br><span class="line">npm <span class="keyword">install </span>hexo-generator-<span class="keyword">baidu-sitemap </span>--save</span><br></pre></td></tr></table></figure>
 
 <h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改站点配置文件，加入：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">plugins: </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"></span><br><span class="line">baidusitemap:</span><br><span class="line">    path: baidusitemap.xml</span><br><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plugins:</span> </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">baidusitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> baidusitemap.xml</span><br><span class="line"><span class="symbol">sitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> sitemap.xml</span><br></pre></td></tr></table></figure>
 
 <p>确认站点配置中url和root的正确性，站点地图会根据url生成完整的链接</p>
 <h1 id="部署到Github-pages"><a href="#部署到Github-pages" class="headerlink" title="部署到Github pages"></a>部署到Github pages</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>打开站点配置文件_config.yml，进行如下设置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:username/username.github.io	//username为github账户名</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> git@github.com:username/username.github.io	<span class="comment">//username为github账户名</span></span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
 
-<h2 id="下载git部署插件"><a href="#下载git部署插件" class="headerlink" title="下载git部署插件"></a>下载git部署插件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h2 id="下载git部署插件"><a href="#下载git部署插件" class="headerlink" title="下载git部署插件"></a>下载git部署插件</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean //清理缓存</span><br><span class="line"></span><br><span class="line">hexo g -d	//让Hexo在生成完毕后自动部署网站</span><br></pre></td></tr></table></figure>
+<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="regexp">//</span>清理缓存</span><br><span class="line"></span><br><span class="line">hexo g -d	<span class="regexp">//</span>让Hexo在生成完毕后自动部署网站</span><br></pre></td></tr></table></figure>
 
 <p>浏览器输入<a href="https://username.github.io即可访问博客/">https://username.github.io即可访问博客</a></p>
 <h1 id="自动打开编辑器"><a href="#自动打开编辑器" class="headerlink" title="自动打开编辑器"></a>自动打开编辑器</h1><p>根目录下新建scripts目录，创建auto_open.js文件，添加如下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">var spawn = require(&#x27;child_process&#x27;).exec;</span><br><span class="line">hexo.on(&#x27;new&#x27;, function(data)&#123;</span><br><span class="line">  spawn(&#x27;start  &quot;编辑器绝对路径&quot; &#x27; + data.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">var</span> spawn = <span class="keyword">require</span>(<span class="string">&#x27;child_process&#x27;</span>).exec;</span><br><span class="line">hexo.<span class="keyword">on</span>(<span class="string">&#x27;new&#x27;</span>, function(<span class="built_in">data</span>)&#123;</span><br><span class="line">  spawn(<span class="string">&#x27;start  &quot;编辑器绝对路径&quot; &#x27;</span> + <span class="built_in">data</span>.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
 <p><a href="https://hexo.io/zh-cn/docs/generating.html">生成文件 | Hexo</a></p>
@@ -202,35 +202,72 @@
   </entry>
   <entry>
     <title>Github pages+Hexo+Next搭建个人博客（四）</title>
-    <url>/2021/07/25/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
+    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
     <content><![CDATA[<p>这里介绍一些文章的发布技巧</p>
 <span id="more"></span>
 
 <h1 id="首页显示文章摘要"><a href="#首页显示文章摘要" class="headerlink" title="首页显示文章摘要"></a>首页显示文章摘要</h1><p>在文章中你想要截断的位置输入如下语句：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="文章模板"><a href="#文章模板" class="headerlink" title="文章模板"></a>文章模板</h1><p>打开/scaffolds/post.md文件，进行如下修改：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line">urlname:</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line">urlname:</span><br><span class="line">categories:</span><br><span class="line"><span class="keyword">tags:</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="开启updated排序"><a href="#开启updated排序" class="headerlink" title="开启updated排序"></a>开启updated排序</h1><p>打开站点配置文件，进行如下修改：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Home page setting</span><br><span class="line"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span><br><span class="line"># per_page: Posts displayed per page. (0 = disable pagination)</span><br><span class="line"># order_by: Posts order. (Order by date descending by default)</span><br><span class="line">index_generator:</span><br><span class="line">  path: &#x27;&#x27;</span><br><span class="line">  per_page: 10</span><br><span class="line">  order_by: -updated</span><br></pre></td></tr></table></figure>
+<figure class="highlight sas"><table><tr><td class="code"><pre><span class="line"># Home <span class="meta">page</span> setting</span><br><span class="line"># path: Root path for your blogs <span class="meta">index</span> <span class="meta">page</span>. (default = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"># per_page: Posts displayed per <span class="meta">page</span>. (0 = disable pagination)</span><br><span class="line"># order_by: Posts <span class="meta">order</span>. (<span class="meta">Order</span> <span class="meta">by</span> date descending <span class="meta">by</span> default)</span><br><span class="line">index_generator:</span><br><span class="line">  path: <span class="string">&#x27;&#x27;</span></span><br><span class="line">  per_page: 10</span><br><span class="line">  order_by: -updated</span><br></pre></td></tr></table></figure>
 
-<h1 id="添加标签、分类"><a href="#添加标签、分类" class="headerlink" title="添加标签、分类"></a>添加标签、分类</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- 分类</span><br><span class="line">tags:</span><br><span class="line">- 标签1</span><br><span class="line">- 标签2</span><br></pre></td></tr></table></figure>
+<h1 id="添加标签、分类"><a href="#添加标签、分类" class="headerlink" title="添加标签、分类"></a>添加标签、分类</h1><figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- 分类</span><br><span class="line"><span class="keyword">tags:</span></span><br><span class="line">- 标签1</span><br><span class="line">- 标签2</span><br></pre></td></tr></table></figure>
 
-<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new &#x27;title&#x27;</span><br></pre></td></tr></table></figure>
+<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="string">&#x27;title&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>Ps：注意把标题里的空格换位<kbd>-</kbd></p>
-<h1 id="新建草稿"><a href="#新建草稿" class="headerlink" title="新建草稿"></a>新建草稿</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new draft &#x27;title&#x27; [--draft] #加上--draft可预览草稿</span><br></pre></td></tr></table></figure>
+<h1 id="新建草稿"><a href="#新建草稿" class="headerlink" title="新建草稿"></a>新建草稿</h1><figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="type">draft</span> <span class="string">&#x27;title&#x27;</span> [--draft] <span class="meta">#加上--draft可预览草稿</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo publish &#x27;title&#x27;</span><br></pre></td></tr></table></figure>
+<h1 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h1><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo</span> publish <span class="string">&#x27;title&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://sqiang.net/post/2792803495.html">解决Hexo文章更新时间问题 | whoru (sqiang.net)</a></p>
 <p><a href="https://blog.vanxnf.top/2018/09/03/Hexo-%E5%8D%9A%E5%AE%A2-Hiker-%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E6%96%87%E7%AB%A0%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B9%B6%E6%8C%89%E7%85%A7%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/">Hexo 博客 Hiker 主题增加文章最后编辑时间，并按照最后编辑时间排序 - Welcome To Vientiane (vanxnf.top)</a></p>
 ]]></content>
   </entry>
   <entry>
+    <title>adb</title>
+    <url>/2021/07/adb/</url>
+    <content><![CDATA[<p>手机上总会有些用不上的预装软件，使用adb能有效卸载系统预装应用</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://adb.clockworkmod.com/">Universal ADB Drivers (clockworkmod.com)</a></p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>添加系统变量</p>
+<h1 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h1><p>手机打开USB调试和USB调试（安全设置）</p>
+<p>这里提供小米11的USB调试打开方式，其他手机可自行搜索</p>
+<h2 id="Mi-11"><a href="#Mi-11" class="headerlink" title="Mi 11"></a>Mi 11</h2><p>设置-我的设备-全部参数</p>
+<p>点击MIUI版本七次</p>
+<p>设置-更多设置-开发者选项</p>
+<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1><h2 id="检查adb是否连接到设备"><a href="#检查adb是否连接到设备" class="headerlink" title="检查adb是否连接到设备"></a>检查adb是否连接到设备</h2><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">adb devices</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看当前运行的包名和Activity"><a href="#查看当前运行的包名和Activity" class="headerlink" title="查看当前运行的包名和Activity"></a>查看当前运行的包名和Activity</h2><figure class="highlight gauss"><table><tr><td class="code"><pre><span class="line">adb <span class="built_in">shell</span> dumpsys <span class="built_in">window</span> | grep mCurrentFocus</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看所有包名"><a href="#查看所有包名" class="headerlink" title="查看所有包名"></a>查看所有包名</h2><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">adb <span class="keyword">shell</span><span class="bash"> pm list packages</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="恢复预装应用"><a href="#恢复预装应用" class="headerlink" title="恢复预装应用"></a>恢复预装应用</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">adb shell cmd <span class="keyword">package</span> <span class="title">install-ex</span>isting &lt;包名&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bnf"><table><tr><td class="code"><pre><span class="line">adb install <span class="attribute">&lt;包名&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall --<span class="keyword">user</span> <span class="title">0</span> (-k) <span class="tag">&lt;包名&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>– user 0 参数是必须的, 它告诉系统仅为当前用户(用户 id 默认为0)</p>
+<p>-k参数代表保留app的数据</p>
+<h2 id="禁用"><a href="#禁用" class="headerlink" title="禁用"></a>禁用</h2><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">adb shell pm disable --<span class="keyword">user</span> <span class="title">0</span> <span class="tag">&lt;包名&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>adb</category>
+      </categories>
+      <tags>
+        <tag>adb</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ahk</title>
-    <url>/2021/07/29/ahk/</url>
+    <url>/2021/07/ahk/</url>
     <content><![CDATA[<p>ahk脚本使用起来挺方便的</p>
 <span id="more"></span>
 
@@ -284,21 +321,21 @@
 </tbody></table>
 <h1 id="音量控制"><a href="#音量控制" class="headerlink" title="音量控制"></a>音量控制</h1><p>{Volume_Up}</p>
 <p>{Volume_Down}</p>
-<h1 id="实用函数"><a href="#实用函数" class="headerlink" title="实用函数"></a>实用函数</h1><h2 id="激活-隐藏-运行窗口"><a href="#激活-隐藏-运行窗口" class="headerlink" title="激活/隐藏/运行窗口"></a>激活/隐藏/运行窗口</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mode_1(ThisHotKey, app_title := &quot;&quot;, app_path := &quot;&quot;)&#123;</span><br><span class="line">	Activate(ThisHotkey)&#123;</span><br><span class="line">		if not WinExist(app_title)			;运行程序</span><br><span class="line">			Run app_path</span><br><span class="line">		else if not WinActive(app_title)	;激活窗口</span><br><span class="line">			WinActivate	</span><br><span class="line">	&#125;</span><br><span class="line">	Hotkey ThisHotkey,Activate</span><br><span class="line">&#125;</span><br><span class="line">mode_1 &quot;hotkey&quot;, &quot;window_title&quot;, &quot;path&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="实用函数"><a href="#实用函数" class="headerlink" title="实用函数"></a>实用函数</h1><h2 id="激活-隐藏-运行窗口"><a href="#激活-隐藏-运行窗口" class="headerlink" title="激活/隐藏/运行窗口"></a>激活/隐藏/运行窗口</h2><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">mode<span class="constructor">_1(ThisHotKey, <span class="params">app_title</span> := <span class="string">&quot;&quot;</span>, <span class="params">app_path</span> := <span class="string">&quot;&quot;</span>)</span>&#123;</span><br><span class="line">	<span class="constructor">Activate(ThisHotkey)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> not <span class="constructor">WinExist(<span class="params">app_title</span>)</span>			;运行程序</span><br><span class="line">			Run app_path</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> not <span class="constructor">WinActive(<span class="params">app_title</span>)</span>	;激活窗口</span><br><span class="line">			WinActivate	</span><br><span class="line">	&#125;</span><br><span class="line">	Hotkey ThisHotkey,Activate</span><br><span class="line">&#125;</span><br><span class="line">mode_1 <span class="string">&quot;hotkey&quot;</span>, <span class="string">&quot;window_title&quot;</span>, <span class="string">&quot;path&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="启用-禁用热键"><a href="#启用-禁用热键" class="headerlink" title="启用/禁用热键"></a>启用/禁用热键</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	str :=&quot;&quot;</span><br><span class="line">	if A_IsSuspended = 1</span><br><span class="line">		str := &quot;1&quot;</span><br><span class="line">	else</span><br><span class="line">		str := &quot;0&quot;</span><br><span class="line">	CoordMode &quot;ToolTip&quot;</span><br><span class="line">	ToolTip str,0,0</span><br><span class="line">	Suspend</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="启用-禁用热键"><a href="#启用-禁用热键" class="headerlink" title="启用/禁用热键"></a>启用/禁用热键</h2><figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="built_in">str</span> :=<span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">if</span> A_IsSuspended = <span class="number">1</span></span><br><span class="line">		<span class="built_in">str</span> := <span class="string">&quot;1&quot;</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">str</span> := <span class="string">&quot;0&quot;</span></span><br><span class="line">	CoordMode <span class="string">&quot;ToolTip&quot;</span></span><br><span class="line">	ToolTip <span class="built_in">str</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">	Suspend</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="判断光标是否在窗口内"><a href="#判断光标是否在窗口内" class="headerlink" title="判断光标是否在窗口内"></a>判断光标是否在窗口内</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MouseIsOver(WinTitle) &#123;</span><br><span class="line">    MouseGetPos ,, &amp;Win</span><br><span class="line">    return WinExist(WinTitle &quot; ahk_id &quot; Win)</span><br></pre></td></tr></table></figure>
+<h2 id="判断光标是否在窗口内"><a href="#判断光标是否在窗口内" class="headerlink" title="判断光标是否在窗口内"></a>判断光标是否在窗口内</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">MouseIsOver</span>(<span class="params">WinTitle</span>)</span> &#123;</span><br><span class="line">    MouseGetPos ,, &amp;Win</span><br><span class="line">    <span class="keyword">return</span> WinExist(WinTitle <span class="string">&quot; ahk_id &quot;</span> Win)</span><br></pre></td></tr></table></figure>
 
-<h2 id="编辑-保存-重载脚本"><a href="#编辑-保存-重载脚本" class="headerlink" title="编辑/保存/重载脚本"></a>编辑/保存/重载脚本</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	if WinActive(&quot;E:\ahk\Myscript.ahk - Notepad++&quot;)&#123;</span><br><span class="line">		SendInput &quot;^s&quot;</span><br><span class="line">		Reload	</span><br><span class="line">		Sleep 1000</span><br><span class="line">		MsgBox &quot;failed&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">		Run A_ProgramsCommon &quot;\notepad++.lnk &quot; A_ScriptFullPath</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="编辑-保存-重载脚本"><a href="#编辑-保存-重载脚本" class="headerlink" title="编辑/保存/重载脚本"></a>编辑/保存/重载脚本</h2><figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">WinActive</span>(<span class="string">&quot;E:\ahk\Myscript.ahk - Notepad++&quot;</span>)&#123;</span><br><span class="line">		SendInput <span class="string">&quot;^s&quot;</span></span><br><span class="line">		Reload	</span><br><span class="line">		<span class="built_in">Sleep</span> <span class="number">1000</span></span><br><span class="line">		<span class="built_in">MsgBox</span> <span class="string">&quot;failed&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">Run</span> A_ProgramsCommon <span class="string">&quot;\notepad++.lnk &quot;</span> A_ScriptFullPath</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="实用指令"><a href="#实用指令" class="headerlink" title="实用指令"></a>实用指令</h1><h2 id="获取当前日期"><a href="#获取当前日期" class="headerlink" title="获取当前日期"></a>获取当前日期</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SendInput FormatTime(&quot;YYYYMMDD&quot;,&quot;yyyy.M.d&quot;)</span><br></pre></td></tr></table></figure>
+<h1 id="实用指令"><a href="#实用指令" class="headerlink" title="实用指令"></a>实用指令</h1><h2 id="获取当前日期"><a href="#获取当前日期" class="headerlink" title="获取当前日期"></a>获取当前日期</h2><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">SendInput</span> <span class="selector-tag">FormatTime</span>(<span class="string">&quot;YYYYMMDD&quot;</span>,<span class="string">&quot;yyyy.M.d&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="打开控制面板"><a href="#打开控制面板" class="headerlink" title="打开控制面板"></a>打开控制面板</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">run &quot;control&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="打开控制面板"><a href="#打开控制面板" class="headerlink" title="打开控制面板"></a>打开控制面板</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="builtin-name">run</span> <span class="string">&quot;control&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="热键豁免"><a href="#热键豁免" class="headerlink" title="热键豁免"></a>热键豁免</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#SuspendExempt</span><br></pre></td></tr></table></figure>
+<h2 id="热键豁免"><a href="#热键豁免" class="headerlink" title="热键豁免"></a>热键豁免</h2><figure class="highlight vala"><table><tr><td class="code"><pre><span class="line"><span class="meta">#SuspendExempt</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="指定窗口热键"><a href="#指定窗口热键" class="headerlink" title="指定窗口热键"></a>指定窗口热键</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#HotIf MouseIsOver(&quot;window title&quot;)</span><br><span class="line">#HotIf</span><br></pre></td></tr></table></figure>
+<h2 id="指定窗口热键"><a href="#指定窗口热键" class="headerlink" title="指定窗口热键"></a>指定窗口热键</h2><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#HotIf</span> <span class="selector-tag">MouseIsOver</span>(<span class="string">&quot;window title&quot;</span>)</span><br><span class="line"><span class="selector-id">#HotIf</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -309,32 +346,55 @@
       </tags>
   </entry>
   <entry>
+    <title>linux常用命令</title>
+    <url>/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>工作中经常要用到liunx命令，这里记录常见的一些</p>
+<span id="more"></span>
+
+<h1 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h1><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cp</span> <span class="symbol">&lt;file_path&gt;</span> <span class="symbol">&lt;file_path&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">mv <span class="tag">&lt;<span class="name">file_path</span>&gt;</span> <span class="tag">&lt;<span class="name">file_path</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h1><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> <span class="symbol">&lt;dir_name&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="进入-退出目录"><a href="#进入-退出目录" class="headerlink" title="进入/退出目录"></a>进入/退出目录</h1><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> &lt;dir_path&gt;<span class="string">/..</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="删除文件-目录"><a href="#删除文件-目录" class="headerlink" title="删除文件/目录"></a>删除文件/目录</h1><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">rm (-rf) &lt;file_path&gt;	<span class="regexp">//</span>-rf是删除目录</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mysql实用语句</title>
-    <url>/2021/07/29/mysql%E5%AE%9E%E7%94%A8%E8%AF%AD%E5%8F%A5/</url>
+    <url>/2021/07/mysql%E5%AE%9E%E7%94%A8%E8%AF%AD%E5%8F%A5/</url>
     <content><![CDATA[<p>记录一些实用的sql语句</p>
 <span id="more"></span>
 
 <h1 id="唯一性约束"><a href="#唯一性约束" class="headerlink" title="唯一性约束"></a>唯一性约束</h1><h2 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table user add unique(id);</span><br></pre></td></tr></table></figure>
 
-<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show keys from user;</span><br></pre></td></tr></table></figure>
+<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> keys <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">drop index key_name on user;</span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">index</span> key_name <span class="keyword">on</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
 
-<h1 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rename table user to user1;</span><br></pre></td></tr></table></figure>
+<h1 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h1><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">rename</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">to</span> user1;</span><br></pre></td></tr></table></figure>
 
-<h1 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h1><h2 id="所有数据"><a href="#所有数据" class="headerlink" title="所有数据"></a>所有数据</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">insert into table2 select * from table1;</span><br></pre></td></tr></table></figure>
+<h1 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h1><h2 id="所有数据"><a href="#所有数据" class="headerlink" title="所有数据"></a>所有数据</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table2 <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> table1;</span><br></pre></td></tr></table></figure>
 
-<h2 id="指定字段"><a href="#指定字段" class="headerlink" title="指定字段"></a>指定字段</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">insert into table2(id) select id from table2;</span><br></pre></td></tr></table></figure>
+<h2 id="指定字段"><a href="#指定字段" class="headerlink" title="指定字段"></a>指定字段</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table2(id) <span class="keyword">select</span> id <span class="keyword">from</span> table2;</span><br></pre></td></tr></table></figure>
 
-<h2 id="数据和结构"><a href="#数据和结构" class="headerlink" title="数据和结构"></a>数据和结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table table2 select * from table1;</span><br></pre></td></tr></table></figure>
+<h2 id="数据和结构"><a href="#数据和结构" class="headerlink" title="数据和结构"></a>数据和结构</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> table2 <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> table1;</span><br></pre></td></tr></table></figure>
 
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table table2 like table1;</span><br></pre></td></tr></table></figure>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> table2 <span class="keyword">like</span> table1;</span><br></pre></td></tr></table></figure>
 
-<h1 id="查询最后几条记录"><a href="#查询最后几条记录" class="headerlink" title="查询最后几条记录"></a>查询最后几条记录</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from user order by id desc limit n;</span><br></pre></td></tr></table></figure>
+<h1 id="查询最后几条记录"><a href="#查询最后几条记录" class="headerlink" title="查询最后几条记录"></a>查询最后几条记录</h1><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">order</span> <span class="keyword">by</span> id <span class="keyword">desc</span> <span class="keyword">limit</span> n;</span><br></pre></td></tr></table></figure>
 
-<h1 id="在原有字符串上加上字符串"><a href="#在原有字符串上加上字符串" class="headerlink" title="在原有字符串上加上字符串"></a>在原有字符串上加上字符串</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">update user set name= concat(&#x27;user_&#x27;,name);</span><br></pre></td></tr></table></figure>
+<h1 id="在原有字符串上加上字符串"><a href="#在原有字符串上加上字符串" class="headerlink" title="在原有字符串上加上字符串"></a>在原有字符串上加上字符串</h1><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> <span class="type">name</span>= concat(<span class="string">&#x27;user_&#x27;</span>,<span class="type">name</span>);</span><br></pre></td></tr></table></figure>
 
-<h1 id="插入或更新"><a href="#插入或更新" class="headerlink" title="插入或更新"></a>插入或更新</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">insert into user(name) values(&#x27;john&#x27;) on duplicate key update name=&#x27;john&#x27;;</span><br></pre></td></tr></table></figure>
+<h1 id="插入或更新"><a href="#插入或更新" class="headerlink" title="插入或更新"></a>插入或更新</h1><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span>(<span class="type">name</span>) <span class="keyword">values</span>(<span class="string">&#x27;john&#x27;</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span> <span class="type">name</span>=<span class="string">&#x27;john&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1246617682185952">廖雪峰的官方网站 </a></p>
 ]]></content>
@@ -346,15 +406,15 @@
       </tags>
   </entry>
   <entry>
-    <title>mysql常见问题</title>
-    <url>/2021/07/29/mysql%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>出现问题总是很令人烦恼，这里做个记录，以帮助有需要的小伙伴</p>
+    <title>mysql常见函数</title>
+    <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>记录一些常见mysql函数</p>
 <span id="more"></span>
 
-<h1 id="‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件"><a href="#‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件" class="headerlink" title="‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件"></a>‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件</h1><p>在环境变量path中加入%SystemRoot%\system32</p>
-<h1 id="发生系统错误5；拒绝访问"><a href="#发生系统错误5；拒绝访问" class="headerlink" title="发生系统错误5；拒绝访问"></a>发生系统错误5；拒绝访问</h1><p>使用管理员权限打开命令行窗口</p>
-<h1 id="ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement"><a href="#ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement" class="headerlink" title="ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement"></a>ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement</h1><p>打开my.cnf或my.ini，在[mysqld]下加上secure_file_prive=’’后重启</p>
-<h1 id="ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server"><a href="#ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server" class="headerlink" title="ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server"></a>ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set global local_infile=1;</span><br></pre></td></tr></table></figure>
+<h1 id="timestampdiff-interval-st-end"><a href="#timestampdiff-interval-st-end" class="headerlink" title="timestampdiff(interval,st,end)"></a>timestampdiff(interval,st,end)</h1><p>计算时间差</p>
+<p>interval参数有四个值：year,month,week,day</p>
+<h1 id="substring-str-pos"><a href="#substring-str-pos" class="headerlink" title="substring(str,pos)"></a>substring(str,pos)</h1><p>取字符串子串</p>
+<h1 id="now"><a href="#now" class="headerlink" title="now()"></a>now()</h1><p>获取当前时间</p>
 ]]></content>
       <categories>
         <category>mysql</category>
@@ -364,15 +424,15 @@
       </tags>
   </entry>
   <entry>
-    <title>mysql常见函数</title>
-    <url>/2021/07/29/mysql%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>记录一些常见mysql函数</p>
+    <title>mysql常见问题</title>
+    <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>出现问题总是很令人烦恼，这里做个记录，以帮助有需要的小伙伴</p>
 <span id="more"></span>
 
-<h1 id="timestampdiff-interval-st-end"><a href="#timestampdiff-interval-st-end" class="headerlink" title="timestampdiff(interval,st,end)"></a>timestampdiff(interval,st,end)</h1><p>计算时间差</p>
-<p>interval参数有四个值：year,month,week,day</p>
-<h1 id="substring-str-pos"><a href="#substring-str-pos" class="headerlink" title="substring(str,pos)"></a>substring(str,pos)</h1><p>取字符串子串</p>
-<h1 id="now"><a href="#now" class="headerlink" title="now()"></a>now()</h1><p>获取当前时间</p>
+<h1 id="‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件"><a href="#‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件" class="headerlink" title="‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件"></a>‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件</h1><p>在环境变量path中加入%SystemRoot%\system32</p>
+<h1 id="发生系统错误5；拒绝访问"><a href="#发生系统错误5；拒绝访问" class="headerlink" title="发生系统错误5；拒绝访问"></a>发生系统错误5；拒绝访问</h1><p>使用管理员权限打开命令行窗口</p>
+<h1 id="ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement"><a href="#ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement" class="headerlink" title="ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement"></a>ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement</h1><p>打开my.cnf或my.ini，在[mysqld]下加上secure_file_prive=’’后重启</p>
+<h1 id="ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server"><a href="#ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server" class="headerlink" title="ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server"></a>ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set global local_infile=1;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>mysql</category>
