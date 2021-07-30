@@ -369,6 +369,23 @@
       </tags>
   </entry>
   <entry>
+    <title>git常见问题</title>
+    <url>/2021/07/git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>在git的使用过程中遇到了一些问题，这里记录一下</p>
+<span id="more"></span>
+
+<h1 id="error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’"><a href="#error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’" class="headerlink" title="error: failed to push some refs to ‘gitee.com:name/project.git’"></a>error: failed to push some refs to ‘gitee.com:name/project.git’</h1><p>这是因为远程仓库与本地仓库不一致，输入如下命令</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git pull (--rebase) origin <span class="keyword">master</span>	<span class="title">//--rebase</span>针对初次推送情况</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mysql实用语句</title>
     <url>/2021/07/mysql%E5%AE%9E%E7%94%A8%E8%AF%AD%E5%8F%A5/</url>
     <content><![CDATA[<p>记录一些实用的sql语句</p>
