@@ -155,6 +155,52 @@
       </tags>
   </entry>
   <entry>
+    <title>Github pages+Hexo+Next搭建个人博客（二）</title>
+    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<p>接下来hexo的相关配置工作。</p>
+<span id="more"></span>
+
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p><a href="https://git-scm.com/download/">Git: 2.31.1.windows.1</a></p>
+<p><a href="https://nodejs.org/en/download/">node.js: 14.17.3</a></p>
+<h1 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h1><p>新建一个文件夹blog</p>
+<p>在文件夹内右键打开gitbash，输入如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">hexo init </span><br><span class="line"></span><br><span class="line">npm install // 安装博客程序依赖</span><br><span class="line"></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器输入localhost:4000，即可访问博客页面</p>
+<h1 id="设置基本信息"><a href="#设置基本信息" class="headerlink" title="设置基本信息"></a>设置基本信息</h1><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="comment"># 博客名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment"># 个性签名</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="comment"># 博主</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="生成Sitemap"><a href="#生成Sitemap" class="headerlink" title="生成Sitemap"></a>生成Sitemap</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>安装普通sitemap和百度sitemap两种：</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-generator-sitemap --save</span><br><span class="line">npm <span class="keyword">install </span>hexo-generator-<span class="keyword">baidu-sitemap </span>--save</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改站点配置文件，加入：</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plugins:</span> </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">baidusitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> baidusitemap.xml</span><br><span class="line"><span class="symbol">sitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> sitemap.xml</span><br></pre></td></tr></table></figure>
+
+<p>确认站点配置中url和root的正确性，站点地图会根据url生成完整的链接</p>
+<h1 id="部署到Github-pages"><a href="#部署到Github-pages" class="headerlink" title="部署到Github pages"></a>部署到Github pages</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>打开站点配置文件_config.yml，进行如下设置</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> git@github.com:username/username.github.io	<span class="comment">//username为github账户名</span></span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载git部署插件"><a href="#下载git部署插件" class="headerlink" title="下载git部署插件"></a>下载git部署插件</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="regexp">//</span>清理缓存</span><br><span class="line"></span><br><span class="line">hexo g -d	<span class="regexp">//</span>让Hexo在生成完毕后自动部署网站</span><br></pre></td></tr></table></figure>
+
+<p>浏览器输入<a href="https://username.github.io即可访问博客/">https://username.github.io即可访问博客</a></p>
+<h1 id="自动打开编辑器"><a href="#自动打开编辑器" class="headerlink" title="自动打开编辑器"></a>自动打开编辑器</h1><p>根目录下新建scripts目录，创建auto_open.js文件，添加如下内容：</p>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">var</span> spawn = <span class="keyword">require</span>(<span class="string">&#x27;child_process&#x27;</span>).exec;</span><br><span class="line">hexo.<span class="keyword">on</span>(<span class="string">&#x27;new&#x27;</span>, function(<span class="built_in">data</span>)&#123;</span><br><span class="line">  spawn(<span class="string">&#x27;start  &quot;编辑器绝对路径&quot; &#x27;</span> + <span class="built_in">data</span>.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/generating.html">生成文件 | Hexo</a></p>
+<p><a href="https://blog.csdn.net/senupp/article/details/103986447">hexo 写文章创建文件自动打开编辑器_高等游民の博客-CSDN博客</a></p>
+<p><a href="https://www.zywvvd.com/2020/03/21/hexo/8_hexo_generate_sitemap/generate-sitemap/">Hexo -8- 生成 sitemap 提交给Google、百度站长 | 又见苍岚 (zywvvd.com)</a></p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github pages+Hexo+Next搭建个人博客（四）</title>
     <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
     <content><![CDATA[<p>这里介绍一些文章的发布技巧</p>
@@ -217,52 +263,6 @@
       </categories>
       <tags>
         <tag>adb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Github pages+Hexo+Next搭建个人博客（二）</title>
-    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<p>接下来hexo的相关配置工作。</p>
-<span id="more"></span>
-
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p><a href="https://git-scm.com/download/">Git: 2.31.1.windows.1</a></p>
-<p><a href="https://nodejs.org/en/download/">node.js: 14.17.3</a></p>
-<h1 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h1><p>新建一个文件夹blog</p>
-<p>在文件夹内右键打开gitbash，输入如下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">hexo init </span><br><span class="line"></span><br><span class="line">npm install // 安装博客程序依赖</span><br><span class="line"></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>在浏览器输入localhost:4000，即可访问博客页面</p>
-<h1 id="设置基本信息"><a href="#设置基本信息" class="headerlink" title="设置基本信息"></a>设置基本信息</h1><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="comment"># 博客名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment"># 个性签名</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="comment"># 博主</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="生成Sitemap"><a href="#生成Sitemap" class="headerlink" title="生成Sitemap"></a>生成Sitemap</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>安装普通sitemap和百度sitemap两种：</p>
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-generator-sitemap --save</span><br><span class="line">npm <span class="keyword">install </span>hexo-generator-<span class="keyword">baidu-sitemap </span>--save</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改站点配置文件，加入：</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plugins:</span> </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">baidusitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> baidusitemap.xml</span><br><span class="line"><span class="symbol">sitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> sitemap.xml</span><br></pre></td></tr></table></figure>
-
-<p>确认站点配置中url和root的正确性，站点地图会根据url生成完整的链接</p>
-<h1 id="部署到Github-pages"><a href="#部署到Github-pages" class="headerlink" title="部署到Github pages"></a>部署到Github pages</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>打开站点配置文件_config.yml，进行如下设置</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> git@github.com:username/username.github.io	<span class="comment">//username为github账户名</span></span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
-
-<h2 id="下载git部署插件"><a href="#下载git部署插件" class="headerlink" title="下载git部署插件"></a>下载git部署插件</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="regexp">//</span>清理缓存</span><br><span class="line"></span><br><span class="line">hexo g -d	<span class="regexp">//</span>让Hexo在生成完毕后自动部署网站</span><br></pre></td></tr></table></figure>
-
-<p>浏览器输入<a href="https://username.github.io即可访问博客/">https://username.github.io即可访问博客</a></p>
-<h1 id="自动打开编辑器"><a href="#自动打开编辑器" class="headerlink" title="自动打开编辑器"></a>自动打开编辑器</h1><p>根目录下新建scripts目录，创建auto_open.js文件，添加如下内容：</p>
-<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">var</span> spawn = <span class="keyword">require</span>(<span class="string">&#x27;child_process&#x27;</span>).exec;</span><br><span class="line">hexo.<span class="keyword">on</span>(<span class="string">&#x27;new&#x27;</span>, function(<span class="built_in">data</span>)&#123;</span><br><span class="line">  spawn(<span class="string">&#x27;start  &quot;编辑器绝对路径&quot; &#x27;</span> + <span class="built_in">data</span>.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
-<p><a href="https://hexo.io/zh-cn/docs/generating.html">生成文件 | Hexo</a></p>
-<p><a href="https://blog.csdn.net/senupp/article/details/103986447">hexo 写文章创建文件自动打开编辑器_高等游民の博客-CSDN博客</a></p>
-<p><a href="https://www.zywvvd.com/2020/03/21/hexo/8_hexo_generate_sitemap/generate-sitemap/">Hexo -8- 生成 sitemap 提交给Google、百度站长 | 又见苍岚 (zywvvd.com)</a></p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -363,23 +363,6 @@
       </tags>
   </entry>
   <entry>
-    <title>mysql学习</title>
-    <url>/2021/07/mysql%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>廖大神yyds！</p>
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>SQL就是访问和处理关系数据库的计算机标准语言。</p>
-<p>关系数据库就是以关系模型为基础，按照数据结构来组织、存储和管理数据的软件。</p>
-<h2 id="Ps："><a href="#Ps：" class="headerlink" title="Ps："></a>Ps：</h2><p>NoSQL只是SQL数据库的补充；</p>
-<p>由于关系模型理解和使用起来最简单，层次模型和网状模型在市场上处于边缘地位</p>
-<h1 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h1><h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384">https://www.liaoxuefeng.com/wiki/1177760294764384</a></p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux常用命令</title>
     <url>/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>工作中经常要用到liunx命令，这里记录常见的一些</p>
@@ -400,6 +383,25 @@
       </categories>
       <tags>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql学习</title>
+    <url>/2021/07/mysql%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>廖大神yyds！</p>
+<span id="more"></span>
+
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>SQL就是访问和处理关系数据库的计算机标准语言。</p>
+<p>关系数据库就是以关系模型为基础，按照数据结构来组织、存储和管理数据的软件。</p>
+<h2 id="Ps："><a href="#Ps：" class="headerlink" title="Ps："></a>Ps：</h2><p>NoSQL只是SQL数据库的补充；</p>
+<p>由于关系模型理解和使用起来最简单，层次模型和网状模型在市场上处于边缘地位</p>
+<h1 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h1><h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384">https://www.liaoxuefeng.com/wiki/1177760294764384</a></p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -432,26 +434,8 @@
 
 <h1 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">load data  [low_priority] [local] infile &#x27;file_name txt&#x27; [replace | ignore]</span><br><span class="line"># 如果指定关键词low_priority，MySQL将会等到没有其他人读这个表时才插入数据。</span><br><span class="line"># 如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器。</span><br><span class="line"># 如果指定replace关键词，mysql将替换重复唯一键记录;如果指定ignore关键词，mysql将跳过重复唯一键记录;如果不指定选项，mysql将对重复记录报错。</span><br><span class="line">into table tbl_name</span><br><span class="line">[fields	# 字段设置</span><br><span class="line">[terminated by&#x27;t&#x27;]	# 指定字段分隔符，默认为制表符</span><br><span class="line">[OPTIONALLY] enclosed by &#x27;&#x27;]	# 指定字段括起字符</span><br><span class="line">[escaped by&#x27;\&#x27; ]]	# 指定字段转义符，默认反斜杠</span><br><span class="line">[lines terminated by&#x27;n&#x27;]	# 指定字段换行符，windows为\n,linux为\r\n</span><br><span class="line">[ignore number lines]	# 指定忽略数据，number为行数</span><br><span class="line">[(col_name,   )]	# 指定导入字段</span><br></pre></td></tr></table></figure>
 
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1246617682185952">廖雪峰的官方网站 </a></p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1246617682185952">廖雪峰的官方网站 </a></p>
 <p><a href="https://www.cnblogs.com/yingsong/p/9482005.html">https://www.cnblogs.com/yingsong/p/9482005.html</a></p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql常见问题</title>
-    <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>出现问题总是很令人烦恼，这里做个记录，以帮助有需要的小伙伴</p>
-<span id="more"></span>
-
-<h1 id="‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件"><a href="#‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件" class="headerlink" title="‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件"></a>‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件</h1><p>在环境变量path中加入%SystemRoot%\system32</p>
-<h1 id="发生系统错误5；拒绝访问"><a href="#发生系统错误5；拒绝访问" class="headerlink" title="发生系统错误5；拒绝访问"></a>发生系统错误5；拒绝访问</h1><p>使用管理员权限打开命令行窗口</p>
-<h1 id="ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement"><a href="#ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement" class="headerlink" title="ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement"></a>ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement</h1><p>打开my.cnf或my.ini，在[mysqld]下加上secure_file_prive=’’后重启</p>
-<h1 id="ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server"><a href="#ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server" class="headerlink" title="ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server"></a>ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set global local_infile=1;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>mysql</category>
@@ -470,6 +454,24 @@
 <p>interval参数有四个值：year,month,week,day</p>
 <h1 id="substring-str-pos"><a href="#substring-str-pos" class="headerlink" title="substring(str,pos)"></a>substring(str,pos)</h1><p>取字符串子串</p>
 <h1 id="now"><a href="#now" class="headerlink" title="now()"></a>now()</h1><p>获取当前时间</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql常见问题</title>
+    <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>出现问题总是很令人烦恼，这里做个记录，以帮助有需要的小伙伴</p>
+<span id="more"></span>
+
+<h1 id="‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件"><a href="#‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件" class="headerlink" title="‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件"></a>‘net’不是内部命令或外部命令，也不是可运行的程序或批处理文件</h1><p>在环境变量path中加入%SystemRoot%\system32</p>
+<h1 id="发生系统错误5；拒绝访问"><a href="#发生系统错误5；拒绝访问" class="headerlink" title="发生系统错误5；拒绝访问"></a>发生系统错误5；拒绝访问</h1><p>使用管理员权限打开命令行窗口</p>
+<h1 id="ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement"><a href="#ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement" class="headerlink" title="ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement"></a>ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement</h1><p>打开my.cnf或my.ini，在[mysqld]下加上secure_file_prive=’’后重启</p>
+<h1 id="ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server"><a href="#ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server" class="headerlink" title="ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server"></a>ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set global local_infile=1;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>mysql</category>
