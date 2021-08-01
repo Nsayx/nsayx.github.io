@@ -434,6 +434,10 @@
 
 <h1 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">load data  [low_priority] [local] infile &#x27;file_name txt&#x27; [replace | ignore]</span><br><span class="line"># 如果指定关键词low_priority，MySQL将会等到没有其他人读这个表时才插入数据。</span><br><span class="line"># 如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器。</span><br><span class="line"># 如果指定replace关键词，mysql将替换重复唯一键记录;如果指定ignore关键词，mysql将跳过重复唯一键记录;如果不指定选项，mysql将对重复记录报错。</span><br><span class="line">into table tbl_name</span><br><span class="line">[fields	# 字段设置</span><br><span class="line">[terminated by&#x27;t&#x27;]	# 指定字段分隔符，默认为制表符</span><br><span class="line">[OPTIONALLY] enclosed by &#x27;&#x27;]	# 指定字段括起字符</span><br><span class="line">[escaped by&#x27;\&#x27; ]]	# 指定字段转义符，默认反斜杠</span><br><span class="line">[lines terminated by&#x27;n&#x27;]	# 指定字段换行符，windows为\n,linux为\r\n</span><br><span class="line">[ignore number lines]	# 指定忽略数据，number为行数</span><br><span class="line">[(col_name,   )]	# 指定导入字段</span><br></pre></td></tr></table></figure>
 
+<h1 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tbl_name <span class="keyword">into</span> outfile <span class="string">&#x27;file_name txt&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1246617682185952">廖雪峰的官方网站 </a></p>
 <p><a href="https://www.cnblogs.com/yingsong/p/9482005.html">https://www.cnblogs.com/yingsong/p/9482005.html</a></p>
 ]]></content>
@@ -479,5 +483,17 @@
       <tags>
         <tag>mysql</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>格式转换</title>
+    <url>/2021/08/%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<p>记录以下遇到过的格式转换</p>
+<span id="more"></span>
+
+<h1 id="txt-gt-excel"><a href="#txt-gt-excel" class="headerlink" title="txt-&gt;excel"></a>txt-&gt;excel</h1><p>打开excel-空白工作簿-数据-从文本/csv-选择文件-文件原始格式，选择Unicode(UTF-8)</p>
+]]></content>
+      <categories>
+        <category>数据</category>
+      </categories>
   </entry>
 </search>
