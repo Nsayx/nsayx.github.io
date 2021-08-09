@@ -55,6 +55,52 @@
       </tags>
   </entry>
   <entry>
+    <title>Github pages+Hexo+Next搭建个人博客（二）</title>
+    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<p>接下来hexo的相关配置工作。</p>
+<span id="more"></span>
+
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p><a href="https://git-scm.com/download/">Git: 2.31.1.windows.1</a></p>
+<p><a href="https://nodejs.org/en/download/">node.js: 14.17.3</a></p>
+<h1 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h1><p>新建一个文件夹blog</p>
+<p>在文件夹内右键打开gitbash，输入如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">hexo init </span><br><span class="line"></span><br><span class="line">npm install // 安装博客程序依赖</span><br><span class="line"></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器输入localhost:4000，即可访问博客页面</p>
+<h1 id="设置基本信息"><a href="#设置基本信息" class="headerlink" title="设置基本信息"></a>设置基本信息</h1><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="comment"># 博客名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment"># 个性签名</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="comment"># 博主</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="生成Sitemap"><a href="#生成Sitemap" class="headerlink" title="生成Sitemap"></a>生成Sitemap</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>安装普通sitemap和百度sitemap两种：</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-generator-sitemap --save</span><br><span class="line">npm <span class="keyword">install </span>hexo-generator-<span class="keyword">baidu-sitemap </span>--save</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改站点配置文件，加入：</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plugins:</span> </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">baidusitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> baidusitemap.xml</span><br><span class="line"><span class="symbol">sitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> sitemap.xml</span><br></pre></td></tr></table></figure>
+
+<p>确认站点配置中url和root的正确性，站点地图会根据url生成完整的链接</p>
+<h1 id="部署到Github-pages"><a href="#部署到Github-pages" class="headerlink" title="部署到Github pages"></a>部署到Github pages</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>打开站点配置文件_config.yml，进行如下设置</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> git@github.com:username/username.github.io	<span class="comment">//username为github账户名</span></span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载git部署插件"><a href="#下载git部署插件" class="headerlink" title="下载git部署插件"></a>下载git部署插件</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="regexp">//</span>清理缓存</span><br><span class="line"></span><br><span class="line">hexo g -d	<span class="regexp">//</span>让Hexo在生成完毕后自动部署网站</span><br></pre></td></tr></table></figure>
+
+<p>浏览器输入<a href="https://username.github.io即可访问博客/">https://username.github.io即可访问博客</a></p>
+<h1 id="自动打开编辑器"><a href="#自动打开编辑器" class="headerlink" title="自动打开编辑器"></a>自动打开编辑器</h1><p>根目录下新建scripts目录，创建auto_open.js文件，添加如下内容：</p>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">var</span> spawn = <span class="keyword">require</span>(<span class="string">&#x27;child_process&#x27;</span>).exec;</span><br><span class="line">hexo.<span class="keyword">on</span>(<span class="string">&#x27;new&#x27;</span>, function(<span class="built_in">data</span>)&#123;</span><br><span class="line">  spawn(<span class="string">&#x27;start  &quot;编辑器绝对路径&quot; &#x27;</span> + <span class="built_in">data</span>.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/generating.html">生成文件 | Hexo</a></p>
+<p><a href="https://blog.csdn.net/senupp/article/details/103986447">hexo 写文章创建文件自动打开编辑器_高等游民の博客-CSDN博客</a></p>
+<p><a href="https://www.zywvvd.com/2020/03/21/hexo/8_hexo_generate_sitemap/generate-sitemap/">Hexo -8- 生成 sitemap 提交给Google、百度站长 | 又见苍岚 (zywvvd.com)</a></p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github pages+Hexo+Next搭建个人博客（三）</title>
     <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/</url>
     <content><![CDATA[<p>最后介绍Next主题。</p>
@@ -155,50 +201,32 @@
       </tags>
   </entry>
   <entry>
-    <title>Github pages+Hexo+Next搭建个人博客（二）</title>
-    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<p>接下来hexo的相关配置工作。</p>
+    <title>Github pages+Hexo+Next搭建个人博客（四）</title>
+    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
+    <content><![CDATA[<p>这里介绍一些文章的发布技巧</p>
 <span id="more"></span>
 
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p><a href="https://git-scm.com/download/">Git: 2.31.1.windows.1</a></p>
-<p><a href="https://nodejs.org/en/download/">node.js: 14.17.3</a></p>
-<h1 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h1><p>新建一个文件夹blog</p>
-<p>在文件夹内右键打开gitbash，输入如下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">hexo init </span><br><span class="line"></span><br><span class="line">npm install // 安装博客程序依赖</span><br><span class="line"></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h1 id="首页显示文章摘要"><a href="#首页显示文章摘要" class="headerlink" title="首页显示文章摘要"></a>首页显示文章摘要</h1><p>在文章中你想要截断的位置输入如下语句：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>在浏览器输入localhost:4000，即可访问博客页面</p>
-<h1 id="设置基本信息"><a href="#设置基本信息" class="headerlink" title="设置基本信息"></a>设置基本信息</h1><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="comment"># 博客名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="comment"># 个性签名</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="comment"># 博主</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1 id="文章模板"><a href="#文章模板" class="headerlink" title="文章模板"></a>文章模板</h1><p>打开/scaffolds/post.md文件，进行如下修改：</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line">urlname:</span><br><span class="line">categories:</span><br><span class="line"><span class="keyword">tags:</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="生成Sitemap"><a href="#生成Sitemap" class="headerlink" title="生成Sitemap"></a>生成Sitemap</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>安装普通sitemap和百度sitemap两种：</p>
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-generator-sitemap --save</span><br><span class="line">npm <span class="keyword">install </span>hexo-generator-<span class="keyword">baidu-sitemap </span>--save</span><br></pre></td></tr></table></figure>
+<h1 id="开启updated排序"><a href="#开启updated排序" class="headerlink" title="开启updated排序"></a>开启updated排序</h1><p>打开站点配置文件，进行如下修改：</p>
+<figure class="highlight sas"><table><tr><td class="code"><pre><span class="line"># Home <span class="meta">page</span> setting</span><br><span class="line"># path: Root path for your blogs <span class="meta">index</span> <span class="meta">page</span>. (default = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"># per_page: Posts displayed per <span class="meta">page</span>. (0 = disable pagination)</span><br><span class="line"># order_by: Posts <span class="meta">order</span>. (<span class="meta">Order</span> <span class="meta">by</span> date descending <span class="meta">by</span> default)</span><br><span class="line">index_generator:</span><br><span class="line">  path: <span class="string">&#x27;&#x27;</span></span><br><span class="line">  per_page: 10</span><br><span class="line">  order_by: -updated</span><br></pre></td></tr></table></figure>
 
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改站点配置文件，加入：</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plugins:</span> </span><br><span class="line">  hexo-generator-baidu-sitemap</span><br><span class="line">  hexo-generator-sitemap</span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">baidusitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> baidusitemap.xml</span><br><span class="line"><span class="symbol">sitemap:</span></span><br><span class="line"><span class="symbol">    path:</span> sitemap.xml</span><br></pre></td></tr></table></figure>
+<h1 id="添加标签、分类"><a href="#添加标签、分类" class="headerlink" title="添加标签、分类"></a>添加标签、分类</h1><figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- 分类</span><br><span class="line"><span class="keyword">tags:</span></span><br><span class="line">- 标签1</span><br><span class="line">- 标签2</span><br></pre></td></tr></table></figure>
 
-<p>确认站点配置中url和root的正确性，站点地图会根据url生成完整的链接</p>
-<h1 id="部署到Github-pages"><a href="#部署到Github-pages" class="headerlink" title="部署到Github pages"></a>部署到Github pages</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>打开站点配置文件_config.yml，进行如下设置</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> git@github.com:username/username.github.io	<span class="comment">//username为github账户名</span></span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
+<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="string">&#x27;title&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="下载git部署插件"><a href="#下载git部署插件" class="headerlink" title="下载git部署插件"></a>下载git部署插件</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<p>Ps：注意把标题里的空格换位<kbd>-</kbd></p>
+<h1 id="新建草稿"><a href="#新建草稿" class="headerlink" title="新建草稿"></a>新建草稿</h1><figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="type">draft</span> <span class="string">&#x27;title&#x27;</span> [--draft] <span class="meta">#加上--draft可预览草稿</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="regexp">//</span>清理缓存</span><br><span class="line"></span><br><span class="line">hexo g -d	<span class="regexp">//</span>让Hexo在生成完毕后自动部署网站</span><br></pre></td></tr></table></figure>
+<h1 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h1><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo</span> publish <span class="string">&#x27;title&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p>浏览器输入<a href="https://username.github.io即可访问博客/">https://username.github.io即可访问博客</a></p>
-<h1 id="自动打开编辑器"><a href="#自动打开编辑器" class="headerlink" title="自动打开编辑器"></a>自动打开编辑器</h1><p>根目录下新建scripts目录，创建auto_open.js文件，添加如下内容：</p>
-<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">var</span> spawn = <span class="keyword">require</span>(<span class="string">&#x27;child_process&#x27;</span>).exec;</span><br><span class="line">hexo.<span class="keyword">on</span>(<span class="string">&#x27;new&#x27;</span>, function(<span class="built_in">data</span>)&#123;</span><br><span class="line">  spawn(<span class="string">&#x27;start  &quot;编辑器绝对路径&quot; &#x27;</span> + <span class="built_in">data</span>.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="https://zhuanlan.zhihu.com/p/348581472">GitHub pages + Hexo 搭建个人博客 - 知乎 (zhihu.com)</a></p>
-<p><a href="https://hexo.io/zh-cn/docs/generating.html">生成文件 | Hexo</a></p>
-<p><a href="https://blog.csdn.net/senupp/article/details/103986447">hexo 写文章创建文件自动打开编辑器_高等游民の博客-CSDN博客</a></p>
-<p><a href="https://www.zywvvd.com/2020/03/21/hexo/8_hexo_generate_sitemap/generate-sitemap/">Hexo -8- 生成 sitemap 提交给Google、百度站长 | 又见苍岚 (zywvvd.com)</a></p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://sqiang.net/post/2792803495.html">解决Hexo文章更新时间问题 | whoru (sqiang.net)</a></p>
+<p><a href="https://blog.vanxnf.top/2018/09/03/Hexo-%E5%8D%9A%E5%AE%A2-Hiker-%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E6%96%87%E7%AB%A0%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B9%B6%E6%8C%89%E7%85%A7%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/">Hexo 博客 Hiker 主题增加文章最后编辑时间，并按照最后编辑时间排序 - Welcome To Vientiane (vanxnf.top)</a></p>
 ]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>hexo</tag>
-      </tags>
   </entry>
   <entry>
     <title>adb</title>
@@ -236,34 +264,6 @@
       <tags>
         <tag>adb</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Github pages+Hexo+Next搭建个人博客（四）</title>
-    <url>/2021/07/Github%20pages+Hexo+Next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
-    <content><![CDATA[<p>这里介绍一些文章的发布技巧</p>
-<span id="more"></span>
-
-<h1 id="首页显示文章摘要"><a href="#首页显示文章摘要" class="headerlink" title="首页显示文章摘要"></a>首页显示文章摘要</h1><p>在文章中你想要截断的位置输入如下语句：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="文章模板"><a href="#文章模板" class="headerlink" title="文章模板"></a>文章模板</h1><p>打开/scaffolds/post.md文件，进行如下修改：</p>
-<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line">urlname:</span><br><span class="line">categories:</span><br><span class="line"><span class="keyword">tags:</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="开启updated排序"><a href="#开启updated排序" class="headerlink" title="开启updated排序"></a>开启updated排序</h1><p>打开站点配置文件，进行如下修改：</p>
-<figure class="highlight sas"><table><tr><td class="code"><pre><span class="line"># Home <span class="meta">page</span> setting</span><br><span class="line"># path: Root path for your blogs <span class="meta">index</span> <span class="meta">page</span>. (default = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"># per_page: Posts displayed per <span class="meta">page</span>. (0 = disable pagination)</span><br><span class="line"># order_by: Posts <span class="meta">order</span>. (<span class="meta">Order</span> <span class="meta">by</span> date descending <span class="meta">by</span> default)</span><br><span class="line">index_generator:</span><br><span class="line">  path: <span class="string">&#x27;&#x27;</span></span><br><span class="line">  per_page: 10</span><br><span class="line">  order_by: -updated</span><br></pre></td></tr></table></figure>
-
-<h1 id="添加标签、分类"><a href="#添加标签、分类" class="headerlink" title="添加标签、分类"></a>添加标签、分类</h1><figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- 分类</span><br><span class="line"><span class="keyword">tags:</span></span><br><span class="line">- 标签1</span><br><span class="line">- 标签2</span><br></pre></td></tr></table></figure>
-
-<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="string">&#x27;title&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>Ps：注意把标题里的空格换位<kbd>-</kbd></p>
-<h1 id="新建草稿"><a href="#新建草稿" class="headerlink" title="新建草稿"></a>新建草稿</h1><figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="type">draft</span> <span class="string">&#x27;title&#x27;</span> [--draft] <span class="meta">#加上--draft可预览草稿</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h1><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo</span> publish <span class="string">&#x27;title&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://sqiang.net/post/2792803495.html">解决Hexo文章更新时间问题 | whoru (sqiang.net)</a></p>
-<p><a href="https://blog.vanxnf.top/2018/09/03/Hexo-%E5%8D%9A%E5%AE%A2-Hiker-%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E6%96%87%E7%AB%A0%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B9%B6%E6%8C%89%E7%85%A7%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/">Hexo 博客 Hiker 主题增加文章最后编辑时间，并按照最后编辑时间排序 - Welcome To Vientiane (vanxnf.top)</a></p>
-]]></content>
   </entry>
   <entry>
     <title>ahk</title>
@@ -389,37 +389,12 @@
       </tags>
   </entry>
   <entry>
-    <title>git常见问题</title>
-    <url>/2021/07/git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>在git的使用过程中遇到了一些问题，这里记录一下</p>
-<span id="more"></span>
-
-<h2 id="error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’"><a href="#error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’" class="headerlink" title="error: failed to push some refs to ‘gitee.com:name/project.git’"></a>error: failed to push some refs to ‘gitee.com:name/project.git’</h2><p>这是因为远程仓库与本地仓库不一致，输入如下命令</p>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git pull (--rebase) origin <span class="keyword">master</span>	<span class="title">//--rebase</span>针对初次推送情况</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mysql学习</title>
     <url>/2021/07/mysql%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p>廖大神yyds！</p>
 <span id="more"></span>
 
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>关系数据库以关系模型为基础，主要用来存储、管理数据。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph LR</span><br><span class="line">a(数据库__)--&gt;b(数据表__)--&gt;c(记录_)--&gt;d(字段_)</span><br><span class="line">d--&gt;e(数据类型__)</span><br><span class="line">d--&gt;|可选__|f(非空_)</span><br><span class="line">d--&gt;|可选__|g(自增)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
 <h1 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h1><table>
 <thead>
 <tr>
@@ -535,7 +510,16 @@
 <p>修改字段名称，可使用modify关键字</p>
 <figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">modify</span></span> column field_name ...;</span><br></pre></td></tr></table></figure>
 
+<h2 id="日期-时间"><a href="#日期-时间" class="headerlink" title="日期/时间"></a>日期/时间</h2><p>日期格式：YYYY-MM-DD</p>
+<p>时间格式：hh:mm:ss</p>
+<p>获取当前日期+时间(date+time)</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">select</span> <span class="title">now</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure>
 
+<p>获取当前日期</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">select</span> <span class="title">curdate</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>获取当前时间</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">select</span> <span class="title">curtime</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure>
 
 <h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><p>Data Manipulation Language</p>
 <p>DML为用户提供添加、删除、更新数据的能力，这些是应用程序对数据库的日常操作。</p>
@@ -548,6 +532,23 @@
       </categories>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git常见问题</title>
+    <url>/2021/07/git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>在git的使用过程中遇到了一些问题，这里记录一下</p>
+<span id="more"></span>
+
+<h2 id="error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’"><a href="#error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’" class="headerlink" title="error: failed to push some refs to ‘gitee.com:name/project.git’"></a>error: failed to push some refs to ‘gitee.com:name/project.git’</h2><p>这是因为远程仓库与本地仓库不一致，输入如下命令</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git pull (--rebase) origin <span class="keyword">master</span>	<span class="title">//--rebase</span>针对初次推送情况</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -595,24 +596,6 @@
       </tags>
   </entry>
   <entry>
-    <title>mysql常见函数</title>
-    <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>记录一些常见mysql函数</p>
-<span id="more"></span>
-
-<h1 id="timestampdiff-interval-st-end"><a href="#timestampdiff-interval-st-end" class="headerlink" title="timestampdiff(interval,st,end)"></a>timestampdiff(interval,st,end)</h1><p>计算时间差</p>
-<p>interval参数有四个值：year,month,week,day</p>
-<h1 id="substring-str-pos"><a href="#substring-str-pos" class="headerlink" title="substring(str,pos)"></a>substring(str,pos)</h1><p>取字符串子串</p>
-<h1 id="now"><a href="#now" class="headerlink" title="now()"></a>now()</h1><p>获取当前时间</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mysql常见问题</title>
     <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>出现问题总是很令人烦恼，这里做个记录，以帮助有需要的小伙伴</p>
@@ -622,6 +605,24 @@
 <h1 id="发生系统错误5；拒绝访问"><a href="#发生系统错误5；拒绝访问" class="headerlink" title="发生系统错误5；拒绝访问"></a>发生系统错误5；拒绝访问</h1><p>使用管理员权限打开命令行窗口</p>
 <h1 id="ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement"><a href="#ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement" class="headerlink" title="ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement"></a>ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement</h1><p>打开my.cnf或my.ini，在[mysqld]下加上secure_file_prive=’’后重启</p>
 <h1 id="ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server"><a href="#ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server" class="headerlink" title="ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server"></a>ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set global local_infile=1;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql常见函数</title>
+    <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>记录一些常见mysql函数</p>
+<span id="more"></span>
+
+<h1 id="timestampdiff-interval-st-end"><a href="#timestampdiff-interval-st-end" class="headerlink" title="timestampdiff(interval,st,end)"></a>timestampdiff(interval,st,end)</h1><p>计算时间差</p>
+<p>interval参数有四个值：year,month,week,day</p>
+<h1 id="substring-str-pos"><a href="#substring-str-pos" class="headerlink" title="substring(str,pos)"></a>substring(str,pos)</h1><p>取字符串子串</p>
+<h1 id="now"><a href="#now" class="headerlink" title="now()"></a>now()</h1><p>获取当前时间</p>
 ]]></content>
       <categories>
         <category>mysql</category>
