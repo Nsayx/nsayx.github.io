@@ -366,6 +366,23 @@
       </tags>
   </entry>
   <entry>
+    <title>git常见问题</title>
+    <url>/2021/07/git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>在git的使用过程中遇到了一些问题，这里记录一下</p>
+<span id="more"></span>
+
+<h2 id="error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’"><a href="#error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’" class="headerlink" title="error: failed to push some refs to ‘gitee.com:name/project.git’"></a>error: failed to push some refs to ‘gitee.com:name/project.git’</h2><p>这是因为远程仓库与本地仓库不一致，输入如下命令</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git pull (--rebase) origin <span class="keyword">master</span>	<span class="title">//--rebase</span>针对初次推送情况</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux常用命令</title>
     <url>/2021/07/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>工作中经常要用到liunx命令，这里记录常见的一些</p>
@@ -389,30 +406,15 @@
       </tags>
   </entry>
   <entry>
-    <title>git常见问题</title>
-    <url>/2021/07/git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>在git的使用过程中遇到了一些问题，这里记录一下</p>
-<span id="more"></span>
-
-<h2 id="error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’"><a href="#error-failed-to-push-some-refs-to-‘gitee-com-name-project-git’" class="headerlink" title="error: failed to push some refs to ‘gitee.com:name/project.git’"></a>error: failed to push some refs to ‘gitee.com:name/project.git’</h2><p>这是因为远程仓库与本地仓库不一致，输入如下命令</p>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git pull (--rebase) origin <span class="keyword">master</span>	<span class="title">//--rebase</span>针对初次推送情况</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mysql学习</title>
     <url>/2021/07/mysql%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p>廖大神yyds！</p>
 <span id="more"></span>
 
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>关系数据库以关系模型为基础，主要用来存储、管理数据。</p>
-<h1 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h1><table>
+<h1 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h1><p>关系数据库以关系模型为基础，而关系模型本质上就是若干个存储数据的二维表。</p>
+<p>表的每一行称为记录（Record），记录是一个逻辑意义上的数据。</p>
+<p>表的每一列称为字段（Column），同一个表的每一行记录都拥有相同的若干字段。</p>
+<h3 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h3><table>
 <thead>
 <tr>
 <th>名称</th>
@@ -471,6 +473,28 @@
 <td>存储日期+时间，例如，2018-06-22 12:20:59</td>
 </tr>
 </tbody></table>
+<h1 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h1><p>DDL允许用户定义数据，也就是创建表、删除表、修改表结构这些操作。通常，DDL由数据库管理员执行。</p>
+<h2 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h2><figure class="highlight pf"><table><tr><td class="code"><pre><span class="line">create <span class="built_in">table</span> <span class="variable">&lt;表名&gt;</span>(字段定义，主键定义)engine=<span class="variable">&lt;数据库引擎&gt;</span> <span class="keyword">default</span> charset=<span class="variable">&lt;编码格式&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字段定义"><a href="#字段定义" class="headerlink" title="字段定义"></a>字段定义</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="section">&lt;字段名&gt;</span> <span class="section">&lt;数据类型&gt;</span> <span class="section">&lt;是否非空&gt;</span> <span class="section">&lt;其它定义...&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通常情况下，字段应该避免允许为NULL。不允许为NULL可以简化查询条件，加快查询速度，也利于应用程序读取数据后无需判断是否为NULL。</p>
+<h3 id="主键定义"><a href="#主键定义" class="headerlink" title="主键定义"></a>主键定义</h3><p>主键能够通过某字段唯一区分出不同的记录</p>
+<p>ps：不使用任何业务相关的字段作为主键，我们一般把这个字段命名为id。</p>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><span class="line"><span class="variable">primary</span> <span class="function"><span class="title">key</span>(&lt;字段&gt;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据库引擎"><a href="#数据库引擎" class="headerlink" title="数据库引擎"></a>数据库引擎</h3><p>最常用的两种数据库引擎是Innodb和MyISAM，这两个表类型基本的差别为：MyISAM类型不支持事务处理等高级处理，而InnoDB类型支持。MyISAM类型的表强调的是性能，其执行数度比InnoDB类型更快，但是不提供事务支持，而InnoDB提供事务支持已经外部键等高级数据库功能。</p>
+<p>使用MySQL时，不同的表可以使用不同的数据库引擎。如果不知道使用哪种引擎，选择<em>InnoDB</em>。</p>
+<h3 id="编码格式"><a href="#编码格式" class="headerlink" title="编码格式"></a>编码格式</h3><p>作为国人，我们最常用的两种数据编码格式应该就是utf8和gb2312了。这两种编码格式都支持中文，utf8包含全世界所有国家需要用到的字符，是国际编码，通用性强，中文编码占3个字节。而gb2312主要在大陆地区使用，是一个本地化的字符集，中文占两个字节。</p>
+<p>ps：还有一种较为常用的编码格式gbk，这是gb2312的扩容版本。gbk采用双字节来表示，最高位设为1来区分中文。</p>
+<h2 id="删表"><a href="#删表" class="headerlink" title="删表"></a>删表</h2><figure class="highlight pf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="built_in">table</span> <span class="variable">&lt;表名&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="operator">&lt;</span>外键名<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">FOREIGN</span> KEY (<span class="operator">&lt;</span>外键字段<span class="operator">&gt;</span>)</span><br><span class="line"><span class="keyword">REFERENCES</span> <span class="operator">&lt;</span>关联表<span class="operator">&gt;</span> (<span class="operator">&lt;</span>关联字段<span class="operator">&gt;</span>);</span><br></pre></td></tr></table></figure>
+
 <h1 id="主流关系数据库"><a href="#主流关系数据库" class="headerlink" title="主流关系数据库"></a>主流关系数据库</h1><table>
 <thead>
 <tr>
@@ -495,7 +519,7 @@
 <td>Sqlite等，适合手机应用和桌面程序</td>
 </tr>
 </tbody></table>
-<h1 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h1><p>Data Definition Language</p>
+<h1 id="DDL-1"><a href="#DDL-1" class="headerlink" title="DDL"></a>DDL</h1><p>Data Definition Language</p>
 <p>DDL允许用户定义数据，也就是创建表、删除表、修改表结构这些操作。通常，DDL由数据库管理员执行。</p>
 <h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><p>使用create关键字来建表</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> (if <span class="keyword">not</span> <span class="keyword">exists</span>) tbl_name(	<span class="operator">/</span><span class="operator">/</span>如果表太多，可使用if <span class="keyword">not</span> <span class="keyword">exists</span>判定是否已存在该表</span><br></pre></td></tr></table></figure>
@@ -512,7 +536,7 @@
 
 <h2 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h2><figure class="highlight pf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="built_in">table</span> tbl_name;</span><br></pre></td></tr></table></figure>
 
-<h2 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h2><p>我们可以使用alter关键字来修改表结构，通常分为增加、删除、修改字段这三种情况。</p>
+<h2 id="修改表结构-1"><a href="#修改表结构-1" class="headerlink" title="修改表结构"></a>修改表结构</h2><p>我们可以使用alter关键字来修改表结构，通常分为增加、删除、修改字段这三种情况。</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tbl_name</span><br></pre></td></tr></table></figure>
 
 <h3 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h3><p>增加字段，可使用add关键字</p>
@@ -579,6 +603,8 @@
 
 <h1 id="插入或更新"><a href="#插入或更新" class="headerlink" title="插入或更新"></a>插入或更新</h1><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span>(<span class="type">name</span>) <span class="keyword">values</span>(<span class="string">&#x27;john&#x27;</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span> <span class="type">name</span>=<span class="string">&#x27;john&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
+<h1 id="插入或忽略"><a href="#插入或忽略" class="headerlink" title="插入或忽略"></a>插入或忽略</h1><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">ignore</span> <span class="keyword">into</span> &lt;表名&gt;[(&lt;字段&gt;...)] <span class="keyword">values</span>(&lt;字段值&gt;...)</span><br></pre></td></tr></table></figure>
+
 <h1 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">load data  [low_priority] [local] infile &#x27;file_name txt&#x27; [replace | ignore]</span><br><span class="line"># 如果指定关键词low_priority，MySQL将会等到没有其他人读这个表时才插入数据。</span><br><span class="line"># 如果指定local关键词，则表明从客户主机读文件。如果local没指定，文件必须位于服务器。</span><br><span class="line"># 如果指定replace关键词，mysql将替换重复唯一键记录;如果指定ignore关键词，mysql将跳过重复唯一键记录;如果不指定选项，mysql将对重复记录报错。</span><br><span class="line">into table tbl_name</span><br><span class="line">[fields	# 字段设置</span><br><span class="line">[terminated by&#x27;t&#x27;]	# 指定字段分隔符，默认为制表符</span><br><span class="line">[OPTIONALLY] enclosed by &#x27;&#x27;]	# 指定字段括起字符</span><br><span class="line">[escaped by&#x27;\&#x27; ]]	# 指定字段转义符，默认反斜杠</span><br><span class="line">[lines terminated by&#x27;n&#x27;]	# 指定字段换行符，windows为\n,linux为\r\n</span><br><span class="line">[ignore number lines]	# 指定忽略数据，number为行数</span><br><span class="line">[(col_name,   )]	# 指定导入字段</span><br></pre></td></tr></table></figure>
 
 <h1 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tbl_name <span class="keyword">into</span> outfile <span class="string">&#x27;file_name txt&#x27;</span>;</span><br></pre></td></tr></table></figure>
@@ -587,24 +613,6 @@
 
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1246617682185952">廖雪峰的官方网站 </a></p>
 <p><a href="https://www.cnblogs.com/yingsong/p/9482005.html">https://www.cnblogs.com/yingsong/p/9482005.html</a></p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql常见函数</title>
-    <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>记录一些常见mysql函数</p>
-<span id="more"></span>
-
-<h1 id="timestampdiff-interval-st-end"><a href="#timestampdiff-interval-st-end" class="headerlink" title="timestampdiff(interval,st,end)"></a>timestampdiff(interval,st,end)</h1><p>计算时间差</p>
-<p>interval参数有四个值：year,month,week,day</p>
-<h1 id="substring-str-pos"><a href="#substring-str-pos" class="headerlink" title="substring(str,pos)"></a>substring(str,pos)</h1><p>取字符串子串</p>
-<h1 id="now"><a href="#now" class="headerlink" title="now()"></a>now()</h1><p>获取当前时间</p>
 ]]></content>
       <categories>
         <category>mysql</category>
@@ -623,6 +631,24 @@
 <h1 id="发生系统错误5；拒绝访问"><a href="#发生系统错误5；拒绝访问" class="headerlink" title="发生系统错误5；拒绝访问"></a>发生系统错误5；拒绝访问</h1><p>使用管理员权限打开命令行窗口</p>
 <h1 id="ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement"><a href="#ERROR-1290-HY000-The-MySQL-server-is-running-with-the-–secure-file-priv-option-so-it-cannot-execute-this-statement" class="headerlink" title="ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement"></a>ERROR 1290 (HY000): The MySQL server is running with the –secure-file-priv option so it cannot execute this statement</h1><p>打开my.cnf或my.ini，在[mysqld]下加上secure_file_prive=’’后重启</p>
 <h1 id="ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server"><a href="#ERROR-3948-42000-Loading-local-data-is-disabled-this-must-be-enabled-on-both-the-client-and-server" class="headerlink" title="ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server"></a>ERROR 3948 (42000): Loading local data is disabled; this must be enabled on both the client and server</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set global local_infile=1;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql常见函数</title>
+    <url>/2021/07/mysql%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>记录一些常见mysql函数</p>
+<span id="more"></span>
+
+<h1 id="timestampdiff-interval-st-end"><a href="#timestampdiff-interval-st-end" class="headerlink" title="timestampdiff(interval,st,end)"></a>timestampdiff(interval,st,end)</h1><p>计算时间差</p>
+<p>interval参数有四个值：year,month,week,day</p>
+<h1 id="substring-str-pos"><a href="#substring-str-pos" class="headerlink" title="substring(str,pos)"></a>substring(str,pos)</h1><p>取字符串子串</p>
+<h1 id="now"><a href="#now" class="headerlink" title="now()"></a>now()</h1><p>获取当前时间</p>
 ]]></content>
       <categories>
         <category>mysql</category>
